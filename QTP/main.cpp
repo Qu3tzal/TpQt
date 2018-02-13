@@ -6,9 +6,15 @@ int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 
-	MainWindow w;
-	AuthentificationDialog authentification(0, &w);
+	AuthentificationDialog authentification;
+	authentification.exec();
 
-	authentification.show();
-	return a.exec();
+	if(authentification.loginSuccess())
+	{
+		MainWindow w;
+		w.show();
+		return a.exec();
+	}
+
+	return 0;
 }
