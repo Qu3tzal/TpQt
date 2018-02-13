@@ -30,25 +30,20 @@ class AuthentificationDialog : public QDialog
 		 */
 		~AuthentificationDialog();
 
+	private slots:
 		/**
-		 * @brief Returns the state of the login
-		 * @attention Must be called AFTER exec()
-		 * @return true if the login is successful, false otherwise
+		 * @brief on_authentificationDialogButtonBox_accepted slot called when the user "accepts" the dialog.
 		 */
-		bool loginSuccess() const;
+		void on_authentificationDialogButtonBox_accepted();
 
-	public slots:
 		/**
-		 * @brief Login slot called when the user wants to login.
+		 * @brief on_authentificationDialogButtonBox_rejected slot called when the user "rejects" the dialog.
 		 */
-		void login();
+		void on_authentificationDialogButtonBox_rejected();
 
 	private:
 		// The user interface class.
 		Ui::AuthentificationDialog *ui;
-
-		// The login success flag.
-		bool m_loginSuccess;
 };
 
 #endif // AUTHENTIFICATIONDIALOG_H
