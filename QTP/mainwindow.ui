@@ -35,6 +35,7 @@
      <addaction name="actionStaff"/>
     </widget>
     <addaction name="menuAdd"/>
+    <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menu">
@@ -59,11 +60,6 @@
   <action name="actionQuit">
    <property name="text">
     <string>Quit</string>
-   </property>
-  </action>
-  <action name="actionpd">
-   <property name="text">
-    <string>pd</string>
    </property>
   </action>
   <action name="actionClient">
