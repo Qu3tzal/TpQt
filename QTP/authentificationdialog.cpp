@@ -1,5 +1,6 @@
 #include "authentificationdialog.h"
 #include "ui_authentificationdialog.h"
+#include "model/authentificationmodel.h"
 
 #include <QMessageBox>
 
@@ -18,8 +19,7 @@ AuthentificationDialog::~AuthentificationDialog()
 
 void AuthentificationDialog::on_authentificationDialogButtonBox_accepted()
 {
-	// TODO: do the login/password check.
-	if(ui->loginLineEdit->text() == "Louis")
+	if(AuthentificationModel::checkLogin(ui->loginLineEdit->text(), ui->passwordLineEdit->text()))
 	{
 		accept();
 	}

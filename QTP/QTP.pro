@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    authentificationdialog.cpp
+    authentificationdialog.cpp \
+    model/authentificationmodel.cpp
 
 HEADERS  += mainwindow.h \
-    authentificationdialog.h
+    authentificationdialog.h \
+    model/authentificationmodel.h
 
 FORMS    += mainwindow.ui \
     authentificationdialog.ui
