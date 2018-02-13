@@ -6,14 +6,23 @@ int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 
+	// Launches the authentification dialog.
 	AuthentificationDialog authentification;
 	authentification.exec();
 
+	// Once we got the authentification success, we launch the main window.
 	if(authentification.loginSuccess())
 	{
 		MainWindow w;
 		w.show();
+
+		// We need to do the application exec here, otherwise the MainWindow would get out of scope.
 		return a.exec();
+	}
+	else
+	{
+		// Return 1 (= login failure).
+		return 1;
 	}
 
 	return 0;
