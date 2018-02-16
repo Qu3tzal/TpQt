@@ -26,3 +26,8 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     authentificationdialog.ui \
     views/createclientdialog.ui
+
+DISTFILES +=
+
+RESOURCES += \
+    resources.qrc

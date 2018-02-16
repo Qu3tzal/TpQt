@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/address-card.svg</file>
+        <file>icons/user-plus.svg</file>
+    </qresource>
+</RCC>
