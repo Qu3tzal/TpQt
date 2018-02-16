@@ -7,6 +7,10 @@ CreateClientDialog::CreateClientDialog(QWidget *parent)
 {
 	// Load the UI.
 	ui->setupUi(this);
+
+	// Connections.
+	connect(this, SIGNAL(accepted()), this, SLOT(onDialogAccepted()));
+	connect(this, SIGNAL(rejected()), this, SLOT(onDialogRejected()));
 }
 
 CreateClientDialog::~CreateClientDialog()
@@ -14,12 +18,12 @@ CreateClientDialog::~CreateClientDialog()
 	delete ui;
 }
 
-void CreateClientDialog::accept()
+void CreateClientDialog::onDialogAccepted()
 {
 
 }
 
-void CreateClientDialog::reject()
+void CreateClientDialog::onDialogRejected()
 {
 
 }

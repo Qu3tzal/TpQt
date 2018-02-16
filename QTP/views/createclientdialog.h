@@ -28,14 +28,14 @@ class CreateClientDialog : public QDialog
 
 	private slots:
 		/**
-		 * @brief accept slot called when the user "accepts" the dialog.
+		 * @brief onDialogAccepted slot called when the user "accepts" the dialog.
 		 */
-		void accept();
+		void onDialogAccepted();
 
 		/**
-		 * @brief reject slot called when the user "rejects" the dialog.
+		 * @brief onDialogRejected slot called when the user "rejects" the dialog.
 		 */
-		void reject();
+		void onDialogRejected();
 
 	private:
 		// User interface.
