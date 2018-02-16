@@ -17,18 +17,21 @@ SOURCES += main.cpp\
     authentificationdialog.cpp \
     model/authentificationmodel.cpp \
     views/createclientdialog.cpp \
-    views/createstaffdialog.cpp
+    views/createstaffdialog.cpp \
+    views/about.cpp
 
 HEADERS  += mainwindow.h \
     authentificationdialog.h \
     model/authentificationmodel.h \
     views/createclientdialog.h \
-    views/createstaffdialog.h
+    views/createstaffdialog.h \
+    views/about.h
 
 FORMS    += mainwindow.ui \
     authentificationdialog.ui \
     views/createclientdialog.ui \
-    views/createstaffdialog.ui
+    views/createstaffdialog.ui \
+    views/about.ui
 
 DISTFILES +=
 
