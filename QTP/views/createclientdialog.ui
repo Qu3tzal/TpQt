@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>Create a new client</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../resources.qrc">
+    <normaloff>:/icons/user-plus.svg</normaloff>:/icons/user-plus.svg</iconset>
+  </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
@@ -44,7 +48,9 @@
    <layout class="QFormLayout" name="formLayout"/>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>
