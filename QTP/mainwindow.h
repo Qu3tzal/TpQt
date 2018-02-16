@@ -26,6 +26,17 @@ class MainWindow : public QMainWindow
 		 */
 		~MainWindow();
 
+	private slots:
+		/**
+		 * @brief onCreateClientAction slot called when the user wants to create a new client.
+		 */
+		void onCreateClientAction();
+
+		/**
+		 * @brief onCreateStaffAction slot called when the user wants to create a new staff member.
+		 */
+		void onCreateStaffAction();
+
 	private:
 		// The user interface class.
 		Ui::MainWindow *ui;

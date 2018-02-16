@@ -7,9 +7,25 @@ MainWindow::MainWindow(QWidget *parent)
 {
 	// Load the UI.
 	ui->setupUi(this);
+
+	// Connections.
+	connect(ui->actionCreateClient, SIGNAL(triggered(bool)), this, SLOT(onCreateClientAction()));
+	connect(ui->actionToolbarCreateClient, SIGNAL(triggered(bool)), this, SLOT(onCreateClientAction()));
+	connect(ui->actionCreateStaff, SIGNAL(triggered(bool)), this, SLOT(onCreateStaffAction()));
+	connect(ui->actionToolbarCreateStaff, SIGNAL(triggered(bool)), this, SLOT(onCreateStaffAction()));
 }
 
 MainWindow::~MainWindow()
 {
 	delete ui;
+}
+
+void MainWindow::onCreateClientAction()
+{
+
+}
+
+void MainWindow::onCreateStaffAction()
+{
+
 }
