@@ -31,8 +31,8 @@
      <property name="title">
       <string>Add</string>
      </property>
-     <addaction name="actionAddClient"/>
-     <addaction name="actionAddStaff"/>
+     <addaction name="actionCreateClient"/>
+     <addaction name="actionCreateStaff"/>
     </widget>
     <addaction name="menuAdd"/>
     <addaction name="separator"/>
@@ -55,8 +55,8 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionToolbarAddClient"/>
-   <addaction name="actionToolbarAddStaff"/>
+   <addaction name="actionToolbarCreateClient"/>
+   <addaction name="actionToolbarCreateStaff"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionQuit">
@@ -64,7 +64,7 @@
     <string>Quit</string>
    </property>
   </action>
-  <action name="actionToolbarAddClient">
+  <action name="actionToolbarCreateClient">
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/icons/user-plus.svg</normaloff>:/icons/user-plus.svg</iconset>
@@ -73,7 +73,7 @@
     <string>Client</string>
    </property>
   </action>
-  <action name="actionAddStaff">
+  <action name="actionCreateStaff">
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/icons/address-card.svg</normaloff>:/icons/address-card.svg</iconset>
@@ -95,7 +95,7 @@
     <enum>QAction::TextHeuristicRole</enum>
    </property>
   </action>
-  <action name="actionAddClient">
+  <action name="actionCreateClient">
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/icons/user-plus.svg</normaloff>:/icons/user-plus.svg</iconset>
@@ -104,7 +104,7 @@
     <string>Client</string>
    </property>
   </action>
-  <action name="actionToolbarAddStaff">
+  <action name="actionToolbarCreateStaff">
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/icons/address-card.svg</normaloff>:/icons/address-card.svg</iconset>
