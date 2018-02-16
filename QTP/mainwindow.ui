@@ -31,8 +31,8 @@
      <property name="title">
       <string>Add</string>
      </property>
-     <addaction name="actionClient"/>
-     <addaction name="actionStaff"/>
+     <addaction name="actionStaff_2"/>
+     <addaction name="actionClient_2"/>
     </widget>
     <addaction name="menuAdd"/>
     <addaction name="separator"/>
@@ -53,8 +53,10 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
+   <addaction name="actionClient"/>
+   <addaction name="actionStaff"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionQuit">
@@ -67,7 +69,7 @@
     <string>Client</string>
    </property>
   </action>
-  <action name="actionStaff">
+  <action name="actionStaff_2">
    <property name="text">
     <string>Staff</string>
    </property>
@@ -83,6 +85,16 @@
    </property>
    <property name="menuRole">
     <enum>QAction::TextHeuristicRole</enum>
+   </property>
+  </action>
+  <action name="actionClient_2">
+   <property name="text">
+    <string>Client</string>
+   </property>
+  </action>
+  <action name="actionStaff">
+   <property name="text">
+    <string>Staff</string>
    </property>
   </action>
  </widget>
