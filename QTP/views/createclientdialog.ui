@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>CreateClientDialog</class>
  <widget class="QDialog" name="CreateClientDialog">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Create a new client</string>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
