@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "views/createclientdialog.h"
+#include "views/createstaffdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -36,4 +37,7 @@ void MainWindow::onCreateClientAction()
 void MainWindow::onCreateStaffAction()
 {
 	setStatusTip("Creating a new staff");
+
+	CreateStaffDialog *csd = new CreateStaffDialog(this);
+	csd->exec();
 }
