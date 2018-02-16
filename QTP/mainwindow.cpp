@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent)
 	// Load the UI.
 	ui->setupUi(this);
 
+	// Maximize the window.
+	setWindowState(Qt::WindowMaximized);
+
 	// Connections.
 	connect(ui->actionCreateClient, SIGNAL(triggered(bool)), this, SLOT(onCreateClientAction()));
 	connect(ui->actionToolbarCreateClient, SIGNAL(triggered(bool)), this, SLOT(onCreateClientAction()));
@@ -24,11 +27,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::onCreateClientAction()
 {
+	setStatusTip("Creating a new client");
+
 	CreateClientDialog *ccd = new CreateClientDialog(this);
 	ccd->exec();
 }
 
 void MainWindow::onCreateStaffAction()
 {
-
+	setStatusTip("Creating a new staff");
 }
