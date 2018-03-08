@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>621</width>
-    <height>472</height>
+    <height>564</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -195,17 +195,6 @@
         </item>
        </layout>
       </widget>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item alignment="Qt::AlignRight">
-        <widget class="QPushButton" name="searchClientPushButton">
-         <property name="text">
-          <string>Recherche</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
      </item>
      <item>
       <widget class="QDialogButtonBox" name="buttonBox">
