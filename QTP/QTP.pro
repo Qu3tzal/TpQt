@@ -18,14 +18,18 @@ SOURCES += main.cpp\
     model/authentificationmodel.cpp \
     views/createclientdialog.cpp \
     views/createstaffdialog.cpp \
-    views/about.cpp
+    views/about.cpp \
+    controler/clientcontroler.cpp \
+    controler/staffcontoler.cpp
 
 HEADERS  += mainwindow.h \
     authentificationdialog.h \
     model/authentificationmodel.h \
     views/createclientdialog.h \
     views/createstaffdialog.h \
-    views/about.h
+    views/about.h \
+    controler/clientcontroler.h \
+    controler/staffcontoler.h
 
 FORMS    += mainwindow.ui \
     authentificationdialog.ui \
