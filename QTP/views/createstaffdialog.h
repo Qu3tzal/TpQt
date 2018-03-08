@@ -37,6 +37,12 @@ class CreateStaffDialog : public QDialog
 		 */
 		void onDialogRejected();
 
+        /**
+         * @brief onComboBoxChanged slot called when the combo box index change
+         * and hide or show login and password edit
+         */
+        void onComboBoxChanged();
+
 	private:
 		// User interface.
 		Ui::CreateStaffDialog *ui;
