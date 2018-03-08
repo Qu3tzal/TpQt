@@ -2,6 +2,7 @@
 #define CREATESTAFFDIALOG_H
 
 #include <QDialog>
+#include "controler/staffcontroler.h"
 
 namespace Ui {
 class CreateStaffDialog;
@@ -43,7 +44,7 @@ class CreateStaffDialog : public QDialog
          */
         void onComboBoxChanged();
 
-	private:
+private:
 		// User interface.
 		Ui::CreateStaffDialog *ui;
 };

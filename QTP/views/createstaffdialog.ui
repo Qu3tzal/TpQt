@@ -33,7 +33,7 @@
      <item row="0" column="1">
       <widget class="QLineEdit" name="lastNameLineEdit">
        <property name="inputMask">
-        <string>A&lt;</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -55,7 +55,7 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QComboBox" name="comboBox"/>
+      <widget class="QComboBox" name="typeComboBox"/>
      </item>
      <item row="3" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout"/>

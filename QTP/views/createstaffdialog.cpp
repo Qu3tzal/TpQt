@@ -9,13 +9,13 @@ CreateStaffDialog::CreateStaffDialog(QWidget *parent)
 	ui->setupUi(this);
 
     // Add items to the combo box
-    ui->comboBox->addItem("Banquier type A");
-    ui->comboBox->addItem("Banquier type B");
-    ui->comboBox->addItem("Assureur logement");
-    ui->comboBox->addItem("Assureur voiture");
-    ui->comboBox->addItem("Assureur vie");
-    ui->comboBox->addItem("Informaticien");
-    ui->comboBox->addItem("Divers");
+    ui->typeComboBox->addItem("Banquier type A");
+    ui->typeComboBox->addItem("Banquier type B");
+    ui->typeComboBox->addItem("Assureur logement");
+    ui->typeComboBox->addItem("Assureur voiture");
+    ui->typeComboBox->addItem("Assureur vie");
+    ui->typeComboBox->addItem("Informaticien");
+    ui->typeComboBox->addItem("Divers");
 
     // Hide login and password
     onComboBoxChanged();
@@ -23,7 +23,7 @@ CreateStaffDialog::CreateStaffDialog(QWidget *parent)
 	// Connections.
 	connect(this, SIGNAL(accepted()), this, SLOT(onDialogAccepted()));
 	connect(this, SIGNAL(rejected()), this, SLOT(onDialogRejected()));
-    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboBoxChanged()));
+    connect(ui->typeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboBoxChanged()));
 }
 
 CreateStaffDialog::~CreateStaffDialog()
@@ -33,7 +33,12 @@ CreateStaffDialog::~CreateStaffDialog()
 
 void CreateStaffDialog::onDialogAccepted()
 {
-
+    StaffControler staffControler;
+    staffControler.createStaff(ui->firstNameLineEdit->text()
+                               , ui->lastNameLineEdit->text()
+                               , ui->typeComboBox->currentText()
+                               , ui->loginLineEdit->text()
+                               , ui->passwordLineEdit->text());
 }
 
 void CreateStaffDialog::onDialogRejected()
@@ -43,7 +48,7 @@ void CreateStaffDialog::onDialogRejected()
 
 void CreateStaffDialog::onComboBoxChanged()
 {
-    if(ui->comboBox->currentText() == "Informaticien")
+    if(ui->typeComboBox->currentText() == "Informaticien")
     {
         ui->loginLabel->setVisible(true);
         ui->loginLineEdit->setVisible(true);

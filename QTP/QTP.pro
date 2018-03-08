@@ -22,7 +22,7 @@ SOURCES += main.cpp\
     controler/clientcontroler.cpp \
     model/clientmodel.cpp \
     model/staffmodel.cpp \
-    controler/staffconrtoler.cpp
+    controler/staffcontroler.cpp
 
 HEADERS  += mainwindow.h \
     authentificationdialog.h \
