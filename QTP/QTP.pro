@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     views/createstaffdialog.cpp \
     views/about.cpp \
     controler/clientcontroler.cpp \
-    controler/staffcontoler.cpp
+    controler/staffcontoler.cpp \
+    model/clientmodel.cpp \
+    model/staffmodel.cpp
 
 HEADERS  += mainwindow.h \
     authentificationdialog.h \
@@ -29,7 +31,9 @@ HEADERS  += mainwindow.h \
     views/createstaffdialog.h \
     views/about.h \
     controler/clientcontroler.h \
-    controler/staffcontoler.h
+    controler/staffcontoler.h \
+    model/clientmodel.h \
+    model/staffmodel.h
 
 FORMS    += mainwindow.ui \
     authentificationdialog.ui \
