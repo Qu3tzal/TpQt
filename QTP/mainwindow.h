@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+#include "controler/clientcontroler.h"
+#include "controler/staffcontroler.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -50,6 +53,10 @@ class MainWindow : public QMainWindow
 	private:
 		// The user interface class.
 		Ui::MainWindow *ui;
+
+        StaffControler stafControler;
+
+        ClientControler clientControler;
 };
 
 #endif // MAINWINDOW_H

@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     controler/clientcontroler.cpp \
     model/clientmodel.cpp \
     controler/staffcontroler.cpp \
-    model/staffdao.cpp
+    model/staffdao.cpp \
+    staffview.cpp
 
 HEADERS  += mainwindow.h \
     authentificationdialog.h \
@@ -33,7 +34,8 @@ HEADERS  += mainwindow.h \
     controler/clientcontroler.h \
     model/clientmodel.h \
     controler/staffcontroler.h \
-    model/staffdao.h
+    model/staffdao.h \
+    staffview.h
 
 FORMS    += mainwindow.ui \
     authentificationdialog.ui \
