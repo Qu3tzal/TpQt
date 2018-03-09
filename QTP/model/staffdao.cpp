@@ -1,6 +1,6 @@
-#include "staffmodel.h"
+#include "staffdao.h"
 
-StaffModel::StaffModel(QString firstName, QString lastName, QString type, QString login, QString password)
+StaffDAO::StaffDAO(QString firstName, QString lastName, QString type, QString login, QString password)
 {
     this->firstName = firstName;
     this->lastName = lastName;
@@ -9,7 +9,7 @@ StaffModel::StaffModel(QString firstName, QString lastName, QString type, QStrin
     this->password = password;
 }
 
-void StaffModel::saveInBD()
+void StaffDAO::save()
 {
 
 }
