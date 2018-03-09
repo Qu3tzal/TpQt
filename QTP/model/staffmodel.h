@@ -38,7 +38,7 @@ public:
      */
     QString getPassword() {return password;}
 
-    void saveInBD();
+	void saveInBD();
 
 private:
     QString firstName;

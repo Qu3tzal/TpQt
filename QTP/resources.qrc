@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>icons/address-card.svg</file>
         <file>icons/user-plus.svg</file>
+        <file>icons/polytechtours-166x166.png</file>
     </qresource>
 </RCC>

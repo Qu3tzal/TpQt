@@ -4,6 +4,8 @@
 #include "views/createclientdialog.h"
 #include "views/createstaffdialog.h"
 
+#include <QMessageBox>
+
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow)
@@ -19,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(ui->actionToolbarCreateClient, SIGNAL(triggered(bool)), this, SLOT(onCreateClientAction()));
 	connect(ui->actionCreateStaff, SIGNAL(triggered(bool)), this, SLOT(onCreateStaffAction()));
 	connect(ui->actionToolbarCreateStaff, SIGNAL(triggered(bool)), this, SLOT(onCreateStaffAction()));
+	connect(ui->actionAboutUs, SIGNAL(triggered(bool)), this, SLOT(onAboutUsAction()));
+	connect(ui->actionAboutQt, SIGNAL(triggered(bool)), this, SLOT(onAboutQtAction()));
 }
 
 MainWindow::~MainWindow()
@@ -40,4 +44,16 @@ void MainWindow::onCreateStaffAction()
 
 	CreateStaffDialog *csd = new CreateStaffDialog(this);
 	csd->exec();
+}
+
+void MainWindow::onAboutUsAction()
+{
+	QMessageBox box(QString("À propos"), QString("Créateurs : Louis & Maxime"), QMessageBox::Icon::NoIcon, QMessageBox::Ok | QMessageBox::Default, QMessageBox::NoButton, QMessageBox::NoButton, this);
+	box.setIconPixmap(QPixmap(":/icons/polytechtours-166x166.png"));
+	box.exec();
+}
+
+void MainWindow::onAboutQtAction()
+{
+	QMessageBox::aboutQt(this);
 }

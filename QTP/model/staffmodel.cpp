@@ -9,7 +9,7 @@ StaffModel::StaffModel(QString firstName, QString lastName, QString type, QStrin
     this->password = password;
 }
 
-StaffModel::saveInBD()
+void StaffModel::saveInBD()
 {
 
 }

@@ -37,6 +37,16 @@ class MainWindow : public QMainWindow
 		 */
 		void onCreateStaffAction();
 
+		/**
+		 * @brief onAboutUsAction slot called when the user wants to display the about us window.
+		 */
+		void onAboutUsAction();
+
+		/**
+		 * @brief onAboutQtAction slot called when the user wants to display the about Qt window.
+		 */
+		void onAboutQtAction();
+
 	private:
 		// The user interface class.
 		Ui::MainWindow *ui;
