@@ -1,6 +1,6 @@
 #include "staffview.h"
 
-StaffView::StaffView(QWidget * parent) : QTreeWidget(parent)
+StaffView::StaffView(QWidget * parent) : QTreeView(parent)
 {
 
 }

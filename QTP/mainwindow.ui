@@ -38,13 +38,7 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="StaffView" name="treeWidget">
-            <column>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </column>
-           </widget>
+           <widget class="StaffView" name="treeView"/>
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -195,7 +189,7 @@
  <customwidgets>
   <customwidget>
    <class>StaffView</class>
-   <extends>QTreeWidget</extends>
+   <extends>QTreeView</extends>
    <header>views/staffview.h</header>
   </customwidget>
  </customwidgets>
