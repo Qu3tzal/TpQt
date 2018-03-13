@@ -2,11 +2,10 @@
 #define STAFFVIEW_H
 
 #include <QTreeView>
-
-class Staffview : QTreeView
+class StaffView : QTreeView
 {
 public:
-    Staffview();
+    StaffView();
 };
 
 #endif // STAFFVIEW_H

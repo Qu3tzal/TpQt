@@ -22,11 +22,10 @@ SOURCES += main.cpp\
     controler/clientcontroler.cpp \
     model/clientmodel.cpp \
     controler/staffcontroler.cpp \
-    staffview.cpp \
     model/databasecreator.cpp \
-    views/staffview.cpp \
     model/staff.cpp \
-    model/staffdao.cpp
+    model/staffdao.cpp \
+    views/staffview.cpp
 
 HEADERS  += mainwindow.h \
     authentificationdialog.h \
@@ -37,11 +36,10 @@ HEADERS  += mainwindow.h \
     controler/clientcontroler.h \
     model/clientmodel.h \
     controler/staffcontroler.h \
-    staffview.h \
     model/databasecreator.h \
-    views/staffview.h \
     model/staff.h \
-    model/staffdao.h
+    model/staffdao.h \
+    views/staffview.h
 
 FORMS    += mainwindow.ui \
     authentificationdialog.ui \

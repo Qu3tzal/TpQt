@@ -1,6 +1,6 @@
 #include "staffview.h"
 
-Staffview::Staffview()
+StaffView::StaffView()
 {
 
 }
