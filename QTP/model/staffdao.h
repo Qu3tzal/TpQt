@@ -7,13 +7,13 @@
 /**
  * @brief The StaffDAO class
  */
-class StaffDAOl
+class StaffDAO
 {
 	public:
 		/**
 		 * @brief StaffDAO constructor
 		 */
-		StaffDAOl();
+		StaffDAO();
 
 		/**
 		 * @brief getStaffList

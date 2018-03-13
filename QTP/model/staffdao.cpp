@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QString>
 
-StaffDAOl::StaffDAOl()
+StaffDAO::StaffDAO()
 {
 	db = QSqlDatabase::database("QSQLITE");
 
@@ -15,10 +15,10 @@ StaffDAOl::StaffDAOl()
 	db.setDatabaseName("base_tmp.sqli");
 
 	if(!db.open())
-		qDebug() << "Fuck\n";
+		qDebug() << "Error while openning the database.\n";
 }
 
-QSqlTableModel *StaffDAOl::getStaffList()
+QSqlTableModel *StaffDAO::getStaffList()
 {
 	QSqlTableModel* model = new QSqlTableModel(0, db);
 
