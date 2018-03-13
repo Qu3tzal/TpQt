@@ -2,7 +2,8 @@
 #define STAFFDAO_H
 
 #include <QtSql/QSqlDatabase>
-#include <QtSql/QSqlTableModel>
+
+#include "staff.h"
 
 /**
  * @brief The StaffDAO class
@@ -19,7 +20,7 @@ class StaffDAO
 		 * @brief getStaffList
 		 * @return a model pointer
 		 */
-		QSqlTableModel *getStaffList();
+		QList<Staff> getStaffList();
 
 	private:
 		QSqlDatabase db;

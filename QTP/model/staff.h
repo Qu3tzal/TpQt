@@ -8,47 +8,53 @@ class Staff
 	public:
 		/**
 		 * @brief StaffModel constructor
+		 * @param id
 		 * @param firstName
 		 * @param lastName
 		 * @param type
 		 * @param login
 		 * @param password
 		 */
-		Staff(QString firstName, QString lastName, QString type, QString login, QString password);
+		Staff(int id, QString firstName, QString lastName, QString type, QString login, QString password);
+
+		/**
+		 * @brief getID
+		 * @return  the staff id
+		 */
+		int getId() const {return id;}
 
 		/**
 		 * @brief getFirstName
 		 * @return the staff firstname
 		 */
-		QString getFirstName() {return firstName;}
+		QString getFirstName() const {return firstName;}
 
 		/**
 		 * @brief getLastName
 		 * @return the staff lastname
 		 */
-		QString getLastName() {return lastName;}
+		QString getLastName() const {return lastName;}
 
 		/**
 		 * @brief getType
 		 * @return the staff type
 		 */
-		QString getType() {return type;}
+		QString getType() const {return type;}
 
 		/**
 		 * @brief getLogin
 		 * @return the staff login
 		 */
-		QString getLogin() {return login;}
+		QString getLogin() const {return login;}
 
 		/**
 		 * @brief getPassword
 		 * @return the staff password
 		 */
-		QString getPassword() {return password;}
-
-		void save();
+		QString getPassword() const {return password;}
 
 	private:
+		int id;
 		QString firstName;
 		QString lastName;
 		QString type;
