@@ -19,7 +19,7 @@ class StaffDAO
 		 * @brief getStaffList
 		 * @return a model pointer
 		 */
-		QSqlTableModel *getStaffList();
+		QList<Staff> getStaffList();
 
 	private:
 		QSqlDatabase db;
