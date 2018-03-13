@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     model/staffdao.cpp \
     staffview.cpp \
     model/staffmodel.cpp \
-    model/databasecreator.cpp
+    model/databasecreator.cpp \
+    views/staffview.cpp
 
 HEADERS  += mainwindow.h \
     authentificationdialog.h \
@@ -39,7 +40,8 @@ HEADERS  += mainwindow.h \
     model/staffdao.h \
     staffview.h \
     model/staffmodel.h \
-    model/databasecreator.h
+    model/databasecreator.h \
+    views/staffview.h
 
 FORMS    += mainwindow.ui \
     authentificationdialog.ui \
