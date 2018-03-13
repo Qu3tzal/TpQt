@@ -1,0 +1,3 @@
+SIGNAL/SLOT pour la modification du model
+construire un model à partir d'item (TreeItems)
+Faire un DB manager singleton avec fonction qui prend en paramètre un sql query et retourne un la réponse
