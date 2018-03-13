@@ -5,7 +5,7 @@ StaffControler::StaffControler()
 
 }
 
-void StaffControler::createStaff(QString firstName, QString lastName, QString type, QString login, QString password)
+void StaffControler::createStaff(QString , QString , QString , QString , QString )
 {
 
 }

@@ -42,3 +42,26 @@ QList<Staff> StaffDAO::getStaffList()
 
 	return staffs;
 }
+
+QList<QString> StaffDAO::getStaffTypes()
+{
+	QList<QString> types;
+
+	QSqlQuery query(db);
+	query.setForwardOnly(true);
+	bool querySuccess = query.exec("SELECT Label FROM TRessource INNER JOIN TType ON (TRessource.IdType = TType.Id)");
+
+	if(!querySuccess)
+	{
+		qDebug() << "Error while getting staff types list : " << query.lastError().text();
+	}
+	else
+	{
+		while(query.next())
+		{
+			types.append(query.value(0).toString());
+		}
+	}
+
+	return types;
+}

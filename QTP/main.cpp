@@ -1,8 +1,10 @@
 #include "mainwindow.h"
 #include "authentificationdialog.h"
 #include <QApplication>
+#include <QDebug>
 
 #include "model/databasecreator.h"
+#include "model/staffdao.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,6 +12,10 @@ int main(int argc, char *argv[])
 
 	// Uncomment only to create the database.
 	DatabaseCreator::createDB();
+
+	StaffDAO sdao;
+	for(auto& str : sdao.getStaffTypes())
+		qDebug() << "Type: " << str;
 
 	// Launches the authentification dialog.
 	AuthentificationDialog authentification;
