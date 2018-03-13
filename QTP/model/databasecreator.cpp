@@ -1,4 +1,4 @@
-#include "c_init_bd.h"
+#include "databasecreator.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
