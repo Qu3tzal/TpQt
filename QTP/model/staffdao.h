@@ -2,7 +2,8 @@
 #define STAFFDAO_H
 
 #include <QtSql/QSqlDatabase>
-#include <QtSql/QSqlTableModel>
+
+#include "staff.h"
 
 /**
  * @brief The StaffDAO class

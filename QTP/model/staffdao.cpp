@@ -2,6 +2,8 @@
 
 #include <QDebug>
 #include <QString>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlError>
 
 StaffDAO::StaffDAO()
 {
