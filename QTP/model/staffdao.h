@@ -1,59 +1,28 @@
-#ifndef STAFFMODEL_H
-#define STAFFMODEL_H
+#ifndef STAFFDAO_H
+#define STAFFDAO_H
 
-#include <QString>
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlTableModel>
 
-class StaffDAO
+/**
+ * @brief The StaffDAO class
+ */
+class StaffDAOl
 {
 	public:
 		/**
-		 * @brief StaffModel constructor
-		 * @param firstName
-		 * @param lastName
-		 * @param type
-		 * @param login
-		 * @param password
+		 * @brief StaffDAO constructor
 		 */
-		StaffDAO(QString firstName, QString lastName, QString type, QString login, QString password);
+		StaffDAOl();
 
 		/**
-		 * @brief getFirstName
-		 * @return the staff firstname
+		 * @brief getStaffList
+		 * @return a model pointer
 		 */
-		QString getFirstName() {return firstName;}
-
-		/**
-		 * @brief getLastName
-		 * @return the staff lastname
-		 */
-		QString getLastName() {return lastName;}
-
-		/**
-		 * @brief getType
-		 * @return the staff type
-		 */
-		QString getType() {return type;}
-
-		/**
-		 * @brief getLogin
-		 * @return the staff login
-		 */
-		QString getLogin() {return login;}
-
-		/**
-		 * @brief getPassword
-		 * @return the staff password
-		 */
-		QString getPassword() {return password;}
-
-		void save();
+		QSqlTableModel *getStaffList();
 
 	private:
-		QString firstName;
-		QString lastName;
-		QString type;
-		QString login;
-		QString password;
+		QSqlDatabase db;
 };
 
-#endif // STAFFMODEL_H
+#endif // STAFFDAO_H

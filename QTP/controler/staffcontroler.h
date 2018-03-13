@@ -1,7 +1,7 @@
 #ifndef STAFFCONTROLER_H
 #define STAFFCONTROLER_H
 
-#include "model/staffdao.h"
+#include "model/staff.h"
 #include "views/createstaffdialog.h"
 #include <QString>
 

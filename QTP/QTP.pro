@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets sql
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = QTP
 TEMPLATE = app
@@ -22,11 +22,11 @@ SOURCES += main.cpp\
     controler/clientcontroler.cpp \
     model/clientmodel.cpp \
     controler/staffcontroler.cpp \
-    model/staffdao.cpp \
     staffview.cpp \
-    model/staffmodel.cpp \
     model/databasecreator.cpp \
-    views/staffview.cpp
+    views/staffview.cpp \
+    model/staff.cpp \
+    model/staffdao.cpp
 
 HEADERS  += mainwindow.h \
     authentificationdialog.h \
@@ -37,11 +37,11 @@ HEADERS  += mainwindow.h \
     controler/clientcontroler.h \
     model/clientmodel.h \
     controler/staffcontroler.h \
-    model/staffdao.h \
     staffview.h \
-    model/staffmodel.h \
     model/databasecreator.h \
-    views/staffview.h
+    views/staffview.h \
+    model/staff.h \
+    model/staffdao.h
 
 FORMS    += mainwindow.ui \
     authentificationdialog.ui \
