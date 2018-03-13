@@ -8,13 +8,20 @@ class Staff
 	public:
 		/**
 		 * @brief StaffModel constructor
+		 * @param id
 		 * @param firstName
 		 * @param lastName
 		 * @param type
 		 * @param login
 		 * @param password
 		 */
-		Staff(QString firstName, QString lastName, QString type, QString login, QString password);
+		Staff(int id, QString firstName, QString lastName, QString type, QString login, QString password);
+
+		/**
+		 * @brief getID
+		 * @return  the staff id
+		 */
+		int getId() {return id;}
 
 		/**
 		 * @brief getFirstName
@@ -46,9 +53,8 @@ class Staff
 		 */
 		QString getPassword() {return password;}
 
-		void save();
-
 	private:
+		int id;
 		QString firstName;
 		QString lastName;
 		QString type;
