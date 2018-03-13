@@ -2,9 +2,14 @@
 #include "authentificationdialog.h"
 #include <QApplication>
 
+#include "model/c_init_bd.h"
+
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
+
+	// Uncomment only to create the database.
+	//DatabaseCreator::createDB();
 
 	// Launches the authentification dialog.
 	AuthentificationDialog authentification;
