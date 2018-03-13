@@ -1,11 +1,13 @@
 #ifndef STAFFVIEW_H
 #define STAFFVIEW_H
 
-#include <QTreeView>
-class StaffView : QTreeView
+#include <QTreeWidget>
+#include <QWidget>
+
+class StaffView : public QTreeWidget
 {
 public:
-    StaffView();
+    StaffView(QWidget * parent = Q_NULLPTR);
 };
 
 #endif // STAFFVIEW_H

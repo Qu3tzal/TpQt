@@ -3,6 +3,7 @@
 
 #include "views/createclientdialog.h"
 #include "views/createstaffdialog.h"
+#include "views/staffview.h"
 
 #include <QMessageBox>
 
@@ -23,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(ui->actionToolbarCreateStaff, SIGNAL(triggered(bool)), this, SLOT(onCreateStaffAction()));
 	connect(ui->actionAboutUs, SIGNAL(triggered(bool)), this, SLOT(onAboutUsAction()));
 	connect(ui->actionAboutQt, SIGNAL(triggered(bool)), this, SLOT(onAboutQtAction()));
+
+   // StaffView * st = new StaffView(ui->tabWidget->widget(1));
 }
 
 MainWindow::~MainWindow()
