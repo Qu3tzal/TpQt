@@ -10,6 +10,11 @@ AuthentificationDialog::AuthentificationDialog(QWidget *parent)
 {
 	// Load the UI.
 	ui->setupUi(this);
+
+	// TODO: REMOVE
+	// Set the admin login
+	ui->loginLineEdit->setText("Admin");
+	ui->passwordLineEdit->setText("Password");
 }
 
 AuthentificationDialog::~AuthentificationDialog()
