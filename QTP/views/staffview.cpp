@@ -17,21 +17,25 @@ void StaffView::refreshData()
 	QStandardItemModel *model = new QStandardItemModel(this);
 
 	// Get the staff types.
-	auto staffTypes = StaffModel::getStaffTypes();
+	QList<StaffType> staffTypes = StaffModel::getStaffTypes();
 
-	for(StaffType& st : staffTypes)
+	for(QList<StaffType>::iterator typeIterator(staffTypes.begin()) ; typeIterator != staffTypes.end() ; ++typeIterator)
 	{
+		StaffType& st = *typeIterator;
+
 		// Create an item.
 		QStandardItem *typeItem = new QStandardItem(st.label);
 
 		// Get the staff of the current type.
-		auto staffList = StaffModel::getStaffListByType(st.id);
+		QList<Staff> staffList = StaffModel::getStaffListByType(st.id);
 
 		// Append.
 		model->invisibleRootItem()->appendRow(typeItem);
 
-		for(Staff& staff : staffList)
+		for(QList<Staff>::iterator staffIterator(staffList.begin()) ; staffIterator != staffList.end() ; ++staffIterator)
 		{
+			Staff& staff = *staffIterator;
+
 			// Create an item list.
 			// We will only display the first one, then "hide" the id of the staff in the second item.
 			QList<QStandardItem*> staffItems;
