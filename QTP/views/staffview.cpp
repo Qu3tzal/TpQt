@@ -60,6 +60,10 @@ int StaffView::getSelectedStaffId()
 	// Get the currently selected staff.
 	QModelIndex selectedIndex = this->currentIndex();
 
+	// If invalid, return -1.
+	if(!selectedIndex.isValid())
+		return -1;
+
 	// Move the index one column.
 	QModelIndex idIndex = selectedIndex.sibling(selectedIndex.row(), 1);
 
