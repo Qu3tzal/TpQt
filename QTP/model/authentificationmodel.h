@@ -15,7 +15,7 @@ class AuthentificationModel
 		 * @param password
 		 * @return true if the login/password match
 		 */
-		static bool checkLogin(QString login, QString password);
+		static bool checkLogin(const QString &login, const QString &password);
 };
 
 #endif // AUTHENTIFICATIONMODEL_H
