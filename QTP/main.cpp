@@ -13,10 +13,6 @@ int main(int argc, char *argv[])
 	// Uncomment only to create the database.
 	//DatabaseCreator::createDB();
 
-	StaffModel sdao;
-	for(auto& str : sdao.getStaffTypes())
-		qDebug() << "Type: " << str.label;
-
 	// Launches the authentification dialog.
 	AuthentificationDialog authentification;
 
