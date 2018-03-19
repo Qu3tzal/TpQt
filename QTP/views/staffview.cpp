@@ -53,3 +53,16 @@ void StaffView::refreshData()
 	// Set the model.
 	setModel(model);
 }
+
+
+int StaffView::getSelectedStaffId()
+{
+	// Get the currently selected staff.
+	QModelIndex selectedIndex = this->currentIndex();
+
+	// Move the index one column.
+	QModelIndex idIndex = selectedIndex.sibling(selectedIndex.row(), 1);
+
+	// Get the data pointed by the moved-index.
+	return idIndex.data().toInt();
+}
