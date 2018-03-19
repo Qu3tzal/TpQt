@@ -20,7 +20,7 @@ class Account
 		 */
 		int getId() const {return id;}
 		int getIdStaff() const {return idStaff;}
-		QString getLogin() const {return login;};
+        QString getLogin() const {return login;}
 		QString getPassword() const {return password;}
 
 	private:

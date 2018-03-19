@@ -4,7 +4,7 @@
 #include <QString>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
-
+#include <iostream>
 #include "databasecreator.h"
 
 QList<Staff> StaffModel::getStaffList()
@@ -83,4 +83,76 @@ QList<StaffType> StaffModel::getStaffTypes()
 	}
 
 	return types;
+}
+
+bool StaffModel::addStaff(Staff staff, QString login, QString password)
+{
+    QSqlDatabase db = DatabaseCreator::getInstance();
+
+    QSqlQuery query(db);
+    query.setForwardOnly(true);
+
+    query.prepare("INSERT INTO TRessource (Nom , Prenom, IdType) "
+                  "VALUES (:Nom, :Prenom, :IdType)");
+    query.bindValue(":Nom", staff.getLastName());
+    query.bindValue(":Prenom", staff.getFirstName());
+    query.bindValue(":IdType", staff.getTypeId());
+
+    bool querySuccess = query.exec();
+
+    if(getLabel(staff.getTypeId()) == "Informaticien" && querySuccess)
+    {
+        int staffId = query.lastInsertId().toInt();
+        query.prepare("INSERT INTO TCompte (IdRessource , Login, MdP) "
+                      "VALUES (:id, :login, :mdp)");
+        query.bindValue(":id", staffId);
+        query.bindValue(":login", login);
+        query.bindValue(":mdp", password);
+
+        querySuccess = query.exec();
+    }
+
+
+    return querySuccess;
+
+}
+
+QString StaffModel::getLabel(int id)
+{
+    QSqlDatabase db = DatabaseCreator::getInstance();
+
+    QSqlQuery query(db);
+    query.setForwardOnly(true);
+
+    query.prepare("SELECT Label FROM TType WHERE Id = :id");
+
+    query.bindValue(":id", id);
+
+    bool querySuccess = query.exec();
+    query.next();
+
+    if(querySuccess)
+        return query.value(0).toString();
+    else
+        return QString();
+}
+
+int StaffModel::getId(QString label)
+{
+    QSqlDatabase db = DatabaseCreator::getInstance();
+
+    QSqlQuery query(db);
+    query.setForwardOnly(true);
+
+    query.prepare("SELECT Id FROM TType WHERE Label LIKE :label");
+
+    query.bindValue(":label", label);
+
+    bool querySuccess = query.exec();
+    query.next();
+    if(querySuccess)
+        return query.value(0).toInt();
+    else
+        return -1;
+
 }

@@ -40,6 +40,21 @@ class StaffModel
 		 * @return a list of staff types
 		 */
 		static QList<StaffType> getStaffTypes();
+
+        /**
+         * @brief getId in db from StaffType
+         * @param label
+         * @return the id of the staffType
+         */
+        static int getId(QString label);
+
+        static QString getLabel(int id);
+        /**
+         * @brief addStaff
+         * @param staff
+         * @return bool the sucess flag of the query
+         */
+        static bool addStaff(Staff staff, QString login, QString password);
 };
 
 #endif // STAFFDAO_H
