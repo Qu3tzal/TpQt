@@ -10,6 +10,28 @@ DatabaseCreator::DatabaseCreator()
 {
 }
 
+QSqlDatabase DatabaseCreator::getInstance()
+{
+	static QSqlDatabase db = QSqlDatabase::database("QSQLITE");
+
+	// Check if the database is valid.
+	if(!db.isValid())
+	{
+		db = QSqlDatabase::addDatabase("QSQLITE");
+	}
+
+	// Check if the database is opened.
+	if(!db.isOpen())
+	{
+		db.setDatabaseName("base_tmp.sqli");
+
+		if(!db.open())
+			qDebug() << "Error while openning the database.\n";
+	}
+
+	return db;
+}
+
 bool DatabaseCreator::createDB()
 {
     bool b_test;

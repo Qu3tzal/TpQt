@@ -12,10 +12,8 @@ class Staff
 		 * @param firstName
 		 * @param lastName
 		 * @param type
-		 * @param login
-		 * @param password
 		 */
-		Staff(int id, QString firstName, QString lastName, QString type, QString login, QString password);
+		Staff(int id, QString firstName, QString lastName, int type);
 
 		/**
 		 * @brief getID
@@ -36,30 +34,16 @@ class Staff
 		QString getLastName() const {return lastName;}
 
 		/**
-		 * @brief getType
-		 * @return the staff type
+		 * @brief getTypeId
+		 * @return the staff type id
 		 */
-		QString getType() const {return type;}
-
-		/**
-		 * @brief getLogin
-		 * @return the staff login
-		 */
-		QString getLogin() const {return login;}
-
-		/**
-		 * @brief getPassword
-		 * @return the staff password
-		 */
-		QString getPassword() const {return password;}
+		int getTypeId() const {return type;}
 
 	private:
 		int id;
 		QString firstName;
 		QString lastName;
-		QString type;
-		QString login;
-		QString password;
+		int type;
 };
 
 #endif // STAFF_H

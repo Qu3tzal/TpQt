@@ -1,13 +1,25 @@
-#ifndef C_INIT_BD_H
-#define C_INIT_BD_H
+#ifndef DATABASE_CREATOR_H
+#define DATABASE_CREATOR_H
 
+#include <QtSql/QSqlDatabase>
 
 class DatabaseCreator
 {
     private:
 		DatabaseCreator();
+
     public:
+		/**
+		 * @brief getInstance
+		 * @return returns an instance of the database
+		 */
+		static QSqlDatabase getInstance();
+
+		/**
+		 * @brief createDB
+		 * @return create the database (and erase any database already existing)
+		 */
 		static bool createDB(void);
 };
 
-#endif // C_INIT_BD_H
+#endif // DATABASE_CREATOR_H

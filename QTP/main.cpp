@@ -4,18 +4,18 @@
 #include <QDebug>
 
 #include "model/databasecreator.h"
-#include "model/staffdao.h"
+#include "model/staffmodel.h"
 
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 
 	// Uncomment only to create the database.
-	DatabaseCreator::createDB();
+	//DatabaseCreator::createDB();
 
-	StaffDAO sdao;
+	StaffModel sdao;
 	for(auto& str : sdao.getStaffTypes())
-		qDebug() << "Type: " << str;
+		qDebug() << "Type: " << str.label;
 
 	// Launches the authentification dialog.
 	AuthentificationDialog authentification;

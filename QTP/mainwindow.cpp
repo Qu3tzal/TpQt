@@ -24,8 +24,6 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(ui->actionToolbarCreateStaff, SIGNAL(triggered(bool)), this, SLOT(onCreateStaffAction()));
 	connect(ui->actionAboutUs, SIGNAL(triggered(bool)), this, SLOT(onAboutUsAction()));
 	connect(ui->actionAboutQt, SIGNAL(triggered(bool)), this, SLOT(onAboutQtAction()));
-
-   // StaffView * st = new StaffView(ui->tabWidget->widget(1));
 }
 
 MainWindow::~MainWindow()
@@ -39,6 +37,8 @@ void MainWindow::onCreateClientAction()
 
 	CreateClientDialog *ccd = new CreateClientDialog(this);
 	ccd->exec();
+
+	// Refresh the client view.
 }
 
 void MainWindow::onCreateStaffAction()
@@ -47,6 +47,9 @@ void MainWindow::onCreateStaffAction()
 
 	CreateStaffDialog *csd = new CreateStaffDialog(this);
 	csd->exec();
+
+	// Refresh the staff view.
+	ui->staffTreeView->refreshData();
 }
 
 void MainWindow::onAboutUsAction()

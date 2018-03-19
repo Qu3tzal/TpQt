@@ -38,7 +38,11 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="StaffView" name="treeView"/>
+           <widget class="StaffView" name="staffTreeView">
+            <attribute name="headerVisible">
+             <bool>false</bool>
+            </attribute>
+           </widget>
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -91,7 +95,7 @@
      <x>0</x>
      <y>0</y>
      <width>903</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
