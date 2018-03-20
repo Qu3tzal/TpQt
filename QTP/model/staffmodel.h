@@ -69,6 +69,12 @@ class StaffModel
 		 * @param staff
 		 */
 		static void updateStaff(Staff staff);
+
+		/**
+		 * @brief removeStaff
+		 * @param id
+		 */
+		static void removeStaff(int id);
 };
 
 #endif // STAFFDAO_H

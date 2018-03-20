@@ -123,6 +123,20 @@ void StaffModel::updateStaff(Staff staff)
 	}
 }
 
+void StaffModel::removeStaff(int id)
+{
+	QSqlDatabase db = DatabaseCreator::getInstance();
+	QSqlQuery query(db);
+
+	query.prepare("DELETE TRessource WHERE Id = :id");
+	query.bindValue(":id", id);
+
+	if(!query.exec())
+	{
+		qDebug() << "Error while removing staff : " << query.lastError();
+	}
+}
+
 QString StaffModel::getTypeLabelFromId(int id)
 {
     QSqlDatabase db = DatabaseCreator::getInstance();
