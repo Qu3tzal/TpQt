@@ -7,6 +7,32 @@
 #include <iostream>
 #include "databasecreator.h"
 
+Staff StaffModel::getStaffById(int id)
+{
+	QSqlDatabase db = DatabaseCreator::getInstance();
+
+	Staff staff(-1, "", "", -1);
+
+	QSqlQuery query(db);
+	query.setForwardOnly(true);
+	query.prepare("SELECT Id, Nom, Prenom, IdType FROM TRessource WHERE Id = :id");
+	query.bindValue(":id", id);
+
+	if(!query.exec())
+	{
+		qDebug() << "Error while getting staff : " << query.lastError().text();
+	}
+	else
+	{
+		if(query.first())
+		{
+			staff = Staff(query.value(0).toInt(), query.value(1).toString(), query.value(2).toString(), query.value(3).toInt());
+		}
+	}
+
+	return staff;
+}
+
 QList<Staff> StaffModel::getStaffList()
 {
 	QSqlDatabase db = DatabaseCreator::getInstance();
@@ -25,7 +51,7 @@ QList<Staff> StaffModel::getStaffList()
 	{
 		while(query.next())
 		{
-			staffs.append({query.value(0).toInt(), query.value(1).toString(), query.value(2).toString(), query.value(3).toInt()});
+			staffs.append(Staff(query.value(0).toInt(), query.value(1).toString(), query.value(2).toString(), query.value(3).toInt()));
 		}
 	}
 
@@ -53,7 +79,7 @@ QList<Staff> StaffModel::getStaffListByType(int typeId)
 	{
 		while(query.next())
 		{
-			staffs.append({query.value(0).toInt(), query.value(1).toString(), query.value(2).toString(), query.value(3).toInt()});
+			staffs.append(Staff(query.value(0).toInt(), query.value(1).toString(), query.value(2).toString(), query.value(3).toInt()));
 		}
 	}
 
@@ -78,7 +104,11 @@ QList<StaffType> StaffModel::getStaffTypes()
 	{
 		while(query.next())
 		{
-			types.append({query.value(0).toInt(), query.value(1).toString()});
+			StaffType st;
+			st.id = query.value(0).toInt();
+			st.label = query.value(1).toString();
+
+			types.append(st);
 		}
 	}
 
@@ -128,7 +158,7 @@ void StaffModel::removeStaff(int id)
 	QSqlDatabase db = DatabaseCreator::getInstance();
 	QSqlQuery query(db);
 
-	query.prepare("DELETE TRessource WHERE Id = :id");
+	query.prepare("DELETE FROM TRessource WHERE Id = :id");
 	query.bindValue(":id", id);
 
 	if(!query.exec())

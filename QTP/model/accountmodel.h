@@ -17,9 +17,9 @@ class AccountModel
 
 		/**
 		 * @brief removeAccount
-		 * @param id
+		 * @param idStaff
 		 */
-		static void removeAccount(int id);
+		static void removeAccountOfStaff(int idStaff);
 };
 
 #endif // ACCOUNTMODEL_H

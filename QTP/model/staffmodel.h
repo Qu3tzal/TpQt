@@ -21,6 +21,12 @@ struct StaffType
 class StaffModel
 {
 	public:
+		/**
+		 * @brief getStaffById
+		 * @param id
+		 * @return a staff
+		 */
+		static Staff getStaffById(int id);
 
 		/**
 		 * @brief getStaffList

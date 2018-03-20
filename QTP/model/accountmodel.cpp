@@ -24,13 +24,13 @@ int AccountModel::createAccount(QString login, QString password, int idStaff)
 	return query.lastInsertId().toInt();
 }
 
-void AccountModel::removeAccount(int id)
+void AccountModel::removeAccountOfStaff(int idStaff)
 {
 	QSqlDatabase db = DatabaseCreator::getInstance();
 	QSqlQuery query(db);
 
-	query.prepare("DELETE TCompte WHERE Id = :id");
-	query.bindValue(":id", id);
+	query.prepare("DELETE FROM TCompte WHERE IdRessource = :id");
+	query.bindValue(":id", idStaff);
 
 	if(!query.exec())
 	{
