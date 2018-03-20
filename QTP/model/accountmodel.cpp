@@ -30,7 +30,7 @@ void AccountModel::removeAccount(int id)
 	QSqlQuery query(db);
 
 	query.prepare("DELETE TCompte WHERE Id = :id");
-	query.bindValue(":id", idStaff);
+	query.bindValue(":id", id);
 
 	if(!query.exec())
 	{
