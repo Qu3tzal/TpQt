@@ -60,14 +60,14 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="modifyButton">
+             <widget class="QPushButton" name="modifyStaffButton">
               <property name="text">
                <string>Modifier</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="deleteButton">
+             <widget class="QPushButton" name="deleteStaffButton">
               <property name="text">
                <string>Supprimer</string>
               </property>
