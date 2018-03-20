@@ -58,9 +58,17 @@ class StaffModel
 		/**
          * @brief addStaff
          * @param staff
-         * @return bool the sucess flag of the query
+		 * @param login
+		 * @param password
+		 * @return the id of the staff just created
          */
-        static bool addStaff(Staff staff, QString login, QString password);
+		static int addStaff(Staff staff);
+
+		/**
+		 * @brief updateStaff
+		 * @param staff
+		 */
+		static void updateStaff(Staff staff);
 };
 
 #endif // STAFFDAO_H

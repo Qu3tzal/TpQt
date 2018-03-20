@@ -85,36 +85,42 @@ QList<StaffType> StaffModel::getStaffTypes()
 	return types;
 }
 
-bool StaffModel::addStaff(Staff staff, QString login, QString password)
+int StaffModel::addStaff(Staff staff)
 {
     QSqlDatabase db = DatabaseCreator::getInstance();
 
     QSqlQuery query(db);
-    query.setForwardOnly(true);
 
-    query.prepare("INSERT INTO TRessource (Nom , Prenom, IdType) "
+	query.prepare("INSERT INTO TRessource (Nom, Prenom, IdType) "
                   "VALUES (:Nom, :Prenom, :IdType)");
     query.bindValue(":Nom", staff.getLastName());
     query.bindValue(":Prenom", staff.getFirstName());
     query.bindValue(":IdType", staff.getTypeId());
 
-    bool querySuccess = query.exec();
+	if(!query.exec())
+	{
+		qDebug() << "Error while creating staff : " << query.lastError();
+	}
 
-    if(getTypeLabelFromId(staff.getTypeId()) == "Informaticien" && querySuccess)
-    {
-        int staffId = query.lastInsertId().toInt();
-        query.prepare("INSERT INTO TCompte (IdRessource , Login, MdP) "
-                      "VALUES (:id, :login, :mdp)");
-        query.bindValue(":id", staffId);
-        query.bindValue(":login", login);
-        query.bindValue(":mdp", password);
+	return query.lastInsertId().toInt();
+}
 
-        querySuccess = query.exec();
-    }
+void StaffModel::updateStaff(Staff staff)
+{
+	QSqlDatabase db = DatabaseCreator::getInstance();
 
+	QSqlQuery query(db);
 
-    return querySuccess;
+	query.prepare("UPDATE TRessource SET (Nom, Prenom, IdType) VALUES (:Nom, :Prenom, :IdType) WHERE Id = :Id");
+	query.bindValue(":Id", staff.getId());
+	query.bindValue(":Nom", staff.getLastName());
+	query.bindValue(":Prenom", staff.getFirstName());
+	query.bindValue(":IdType", staff.getTypeId());
 
+	if(!query.exec())
+	{
+		qDebug() << "Error while updating staff : " << query.lastError();
+	}
 }
 
 QString StaffModel::getTypeLabelFromId(int id)
@@ -154,5 +160,4 @@ int StaffModel::getTypeIdFromLabel(QString label)
         return query.value(0).toInt();
     else
         return -1;
-
 }
