@@ -1,11 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QMessageBox>
+#include <QDebug>
+
 #include "views/createclientdialog.h"
 #include "views/createstaffdialog.h"
 #include "views/staffview.h"
-
-#include <QMessageBox>
+#include "model/accountmodel.h"
+#include "model/staffmodel.h"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -24,6 +27,9 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(ui->actionToolbarCreateStaff, SIGNAL(triggered(bool)), this, SLOT(onCreateStaffAction()));
 	connect(ui->actionAboutUs, SIGNAL(triggered(bool)), this, SLOT(onAboutUsAction()));
 	connect(ui->actionAboutQt, SIGNAL(triggered(bool)), this, SLOT(onAboutQtAction()));
+
+	connect(ui->modifyStaffButton, SIGNAL(clicked(bool)), this, SLOT(onModifyStaffButtonCliked()));
+	connect(ui->deleteStaffButton, SIGNAL(clicked(bool)), this, SLOT(onDeleteStaffButtonCliked()));
 }
 
 MainWindow::~MainWindow()
@@ -62,4 +68,34 @@ void MainWindow::onAboutUsAction()
 void MainWindow::onAboutQtAction()
 {
 	QMessageBox::aboutQt(this);
+}
+
+void MainWindow::onModifyStaffButtonCliked()
+{
+	setStatusTip("Modifying a staff member");
+}
+
+void MainWindow::onDeleteStaffButtonCliked()
+{
+	setStatusTip("Deleting a staff member");
+
+	int staffId = ui->staffTreeView->getSelectedStaffId();
+
+	if(staffId == -1)
+		return;
+
+	Staff staff = StaffModel::getStaffById(staffId);
+
+	if(staff.getId() == -1)
+		qDebug() << "Error while retrieving the staff : id = -1";
+
+	// Remove the staff.
+	StaffModel::removeStaff(staff.getId());
+
+	// Check the type.
+	if(staff.getTypeId() == 7) // Type 7 = Informaticien
+		AccountModel::removeAccountOfStaff(staff.getId());
+
+	// Update staff view.
+	ui->staffTreeView->refreshData();
 }

@@ -50,6 +50,16 @@ class MainWindow : public QMainWindow
 		 */
 		void onAboutQtAction();
 
+		/**
+		 * @brief onModifyStaffButtonCliked slot called when the user wants to modify a staff member.
+		 */
+		void onModifyStaffButtonCliked();
+
+		/**
+		 * @brief onDeleteStaffButtonCliked slot called when the user wants to delete a staff member.
+		 */
+		void onDeleteStaffButtonCliked();
+
 	private:
 		// The user interface class.
 		Ui::MainWindow *ui;
