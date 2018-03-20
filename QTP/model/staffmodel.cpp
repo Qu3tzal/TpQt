@@ -100,7 +100,7 @@ bool StaffModel::addStaff(Staff staff, QString login, QString password)
 
     bool querySuccess = query.exec();
 
-    if(getLabel(staff.getTypeId()) == "Informaticien" && querySuccess)
+    if(getTypeLabelFromId(staff.getTypeId()) == "Informaticien" && querySuccess)
     {
         int staffId = query.lastInsertId().toInt();
         query.prepare("INSERT INTO TCompte (IdRessource , Login, MdP) "
@@ -117,7 +117,7 @@ bool StaffModel::addStaff(Staff staff, QString login, QString password)
 
 }
 
-QString StaffModel::getLabel(int id)
+QString StaffModel::getTypeLabelFromId(int id)
 {
     QSqlDatabase db = DatabaseCreator::getInstance();
 
@@ -137,7 +137,7 @@ QString StaffModel::getLabel(int id)
         return QString();
 }
 
-int StaffModel::getId(QString label)
+int StaffModel::getTypeIdFromLabel(QString label)
 {
     QSqlDatabase db = DatabaseCreator::getInstance();
 

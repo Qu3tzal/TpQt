@@ -48,7 +48,7 @@ void CreateStaffDialog::onDialogAccepted()
         login = ui->loginLineEdit->text();
         password = ui->passwordLineEdit->text();
     }
-    StaffModel::addStaff(Staff(-1, ui->firstNameLineEdit->text(), ui->lastNameLineEdit->text(), StaffModel::getId(ui->typeComboBox->currentText())), login, password);
+    StaffModel::addStaff(Staff(-1, ui->firstNameLineEdit->text(), ui->lastNameLineEdit->text(), StaffModel::getTypeIdFromLabel(ui->typeComboBox->currentText())), login, password);
 }
 
 void CreateStaffDialog::onDialogRejected()

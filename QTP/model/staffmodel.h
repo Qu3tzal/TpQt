@@ -46,10 +46,16 @@ class StaffModel
          * @param label
          * @return the id of the staffType
          */
-        static int getId(QString label);
+		static int getTypeIdFromLabel(QString label);
 
-        static QString getLabel(int id);
-        /**
+		/**
+		 * @brief getLabel
+		 * @param id
+		 * @return the
+		 */
+		static QString getTypeLabelFromId(int id);
+
+		/**
          * @brief addStaff
          * @param staff
          * @return bool the sucess flag of the query
