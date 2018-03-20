@@ -138,6 +138,9 @@
    <property name="text">
     <string>Quit</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
   </action>
   <action name="actionToolbarCreateClient">
    <property name="icon">
@@ -156,10 +159,16 @@
    <property name="text">
     <string>Staff</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
   </action>
   <action name="actionAboutUs">
    <property name="text">
     <string>About us</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+?</string>
    </property>
   </action>
   <action name="actionAboutQt">
@@ -177,6 +186,9 @@
    </property>
    <property name="text">
     <string>Client</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
    </property>
   </action>
   <action name="actionToolbarCreateStaff">
