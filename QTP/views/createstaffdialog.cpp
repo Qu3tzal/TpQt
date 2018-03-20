@@ -1,6 +1,7 @@
 #include "CreateStaffDialog.h"
 #include "ui_createstaffdialog.h"
 #include "model/staffmodel.h"
+#include "model/accountmodel.h"
 
 CreateStaffDialog::CreateStaffDialog(QWidget *parent)
 	: QDialog(parent)
@@ -16,14 +17,6 @@ CreateStaffDialog::CreateStaffDialog(QWidget *parent)
     {
         ui->typeComboBox->addItem(types[i].label);
     }
-    /*// Add items to the combo box
-    ui->typeComboBox->addItem("Banquier type A");
-    ui->typeComboBox->addItem("Banquier type B");
-    ui->typeComboBox->addItem("Assureur logement");
-    ui->typeComboBox->addItem("Assureur voiture");
-    ui->typeComboBox->addItem("Assureur vie");
-    ui->typeComboBox->addItem("Informaticien");
-    ui->typeComboBox->addItem("Divers");*/
 
     // Hide login and password
     onComboBoxChanged();
@@ -41,14 +34,17 @@ CreateStaffDialog::~CreateStaffDialog()
 
 void CreateStaffDialog::onDialogAccepted()
 {
-    QString login;
-    QString password;
-    if(ui->typeComboBox->currentText() == "Informaticien")
+	// Create staff.
+	int staffId = StaffModel::addStaff(Staff(-1, ui->firstNameLineEdit->text(), ui->lastNameLineEdit->text(), StaffModel::getTypeIdFromLabel(ui->typeComboBox->currentText())));
+
+	// Create account only if needed.
+	if(ui->typeComboBox->currentText() == "Informaticien")
     {
-        login = ui->loginLineEdit->text();
-        password = ui->passwordLineEdit->text();
+		QString login = ui->loginLineEdit->text();
+		QString password = ui->passwordLineEdit->text();
+
+		AccountModel::createAccount(login, password, staffId);
     }
-    StaffModel::addStaff(Staff(-1, ui->firstNameLineEdit->text(), ui->lastNameLineEdit->text(), StaffModel::getTypeIdFromLabel(ui->typeComboBox->currentText())), login, password);
 }
 
 void CreateStaffDialog::onDialogRejected()
