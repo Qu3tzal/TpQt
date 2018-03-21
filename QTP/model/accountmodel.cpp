@@ -71,7 +71,7 @@ void AccountModel::updateAccount(Account account)
 
     QSqlQuery query(db);
 
-    query.prepare("UPDATE TCompte SET (Login, MdP) VALUES (:login, :mdp) WHERE Id = :Id");
+    query.prepare("UPDATE TCompte SET Login = :login, MdP =:mdp WHERE Id = :Id");
     query.bindValue(":login", account.getLogin());
     query.bindValue(":mdp", account.getPassword());
     query.bindValue(":Id", account.getId());
