@@ -39,6 +39,9 @@
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
            <widget class="StaffView" name="staffTreeView">
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
             <attribute name="headerVisible">
              <bool>false</bool>
             </attribute>

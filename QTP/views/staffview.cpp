@@ -2,6 +2,7 @@
 
 #include <QStandardItemModel>
 #include <QStandardItem>
+#include <QDebug>
 
 #include "../model/staffmodel.h"
 #include "../model/staff.h"
@@ -14,7 +15,7 @@ StaffView::StaffView(QWidget * parent) : QTreeView(parent)
 void StaffView::refreshData()
 {
 	// Create a model.
-	QStandardItemModel *model = new QStandardItemModel(this);
+	QStandardItemModel *model = new QStandardItemModel();
 
 	// Get the staff types.
 	QList<StaffType> staffTypes = StaffModel::getStaffTypes();
@@ -41,7 +42,7 @@ void StaffView::refreshData()
 			QList<QStandardItem*> staffItems;
 
 			QStandardItem *staffNameItem = new QStandardItem(staff.getFirstName() + " " + staff.getLastName());
-			QStandardItem *staffIdItem = new QStandardItem(staff.getId());
+			QStandardItem *staffIdItem = new QStandardItem(QString::number(staff.getId()));
 
 			staffItems << staffNameItem << staffIdItem;
 
@@ -52,6 +53,7 @@ void StaffView::refreshData()
 
 	// Set the model.
 	setModel(model);
+	expandAll();
 }
 
 
@@ -59,6 +61,7 @@ int StaffView::getSelectedStaffId()
 {
 	// Get the currently selected staff.
 	QModelIndex selectedIndex = this->currentIndex();
+	qDebug() << selectedIndex.column() << selectedIndex.row();
 
 	// If invalid, return -1.
 	if(!selectedIndex.isValid())
@@ -67,6 +70,10 @@ int StaffView::getSelectedStaffId()
 	// Move the index one column.
 	QModelIndex idIndex = selectedIndex.sibling(selectedIndex.row(), 1);
 
+	// If invalid, return -1.
+	if(!idIndex.isValid())
+		return -1;
+
 	// Get the data pointed by the moved-index.
-	return idIndex.data().toInt();
+	return idIndex.data().toString().toInt();
 }
