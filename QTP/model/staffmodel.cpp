@@ -141,7 +141,7 @@ void StaffModel::updateStaff(Staff staff)
 
 	QSqlQuery query(db);
 
-	query.prepare("UPDATE TRessource SET (Nom, Prenom, IdType) VALUES (:Nom, :Prenom, :IdType) WHERE Id = :Id");
+	query.prepare("UPDATE TRessource SET Nom = :Nom, Prenom = :Prenom, IdType = :IdType WHERE Id = :Id");
 	query.bindValue(":Id", staff.getId());
 	query.bindValue(":Nom", staff.getLastName());
 	query.bindValue(":Prenom", staff.getFirstName());
