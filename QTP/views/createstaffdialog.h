@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include "controler/staffcontroler.h"
+#include "model/staff.h"
+#include "model/account.h"
 
 namespace Ui {
 class CreateStaffDialog;
@@ -20,7 +22,7 @@ class CreateStaffDialog : public QDialog
 		 * @brief Constructor.
 		 * @param parent the parent of this dialog
 		 */
-		explicit CreateStaffDialog(QWidget *parent = 0);
+        explicit CreateStaffDialog(int staffId, QWidget *parent = 0);
 
 		/**
 		 * @brief Destructor.
@@ -47,6 +49,12 @@ class CreateStaffDialog : public QDialog
 private:
 		// User interface.
 		Ui::CreateStaffDialog *ui;
+
+        // The id of the staff (If modification Mode)
+        Staff staff;
+
+        // The id of the account (if modification Mode)
+        Account account;
 };
 
 #endif // CREATESTAFFDIALOG_H

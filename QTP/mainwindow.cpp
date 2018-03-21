@@ -51,7 +51,7 @@ void MainWindow::onCreateStaffAction()
 {
 	setStatusTip("Creating a new staff");
 
-	CreateStaffDialog *csd = new CreateStaffDialog(this);
+    CreateStaffDialog *csd = new CreateStaffDialog(-1, this);
 	csd->exec();
 
 	// Refresh the staff view.
@@ -73,6 +73,12 @@ void MainWindow::onAboutQtAction()
 void MainWindow::onModifyStaffButtonCliked()
 {
 	setStatusTip("Modifying a staff member");
+
+    CreateStaffDialog *csd = new CreateStaffDialog(ui->staffTreeView->getSelectedStaffId(), this);
+    csd->exec();
+
+    // Refresh the staff view.
+    ui->staffTreeView->refreshData();
 }
 
 void MainWindow::onDeleteStaffButtonCliked()
