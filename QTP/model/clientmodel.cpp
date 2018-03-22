@@ -64,10 +64,10 @@ QList<Client> ClientModel::getClientsListFiltered(QString firstname, QString las
 
 	QSqlQuery query(db);
 
-	query.prepare("SELECT Id, Nom, Prenom, Adresse, Ville, CP, Commentaire, Tel, DateRdv, DureeRdv, Priorite FROM TClient WHERE (Nom LIKE :lastname AND Prenom LIKE :firstname) AND DateRdv BETWEEN :mindate AND :maxdate");
+	query.prepare("SELECT Id, Nom, Prenom, Adresse, Ville, CP, Commentaire, Tel, DateRdv, DureeRdv, Priorite FROM TClient WHERE Nom LIKE LOWER(:lastname) AND Prenom LIKE LOWER(:firstname) AND DateRdv BETWEEN :mindate AND :maxdate");
 
-	query.bindValue(":lastname", lastname);
-	query.bindValue(":firstname", firstname);
+	query.bindValue(":lastname", lastname + "%");
+	query.bindValue(":firstname", firstname + "%");
 	query.bindValue(":mindate", minDate);
 	query.bindValue(":maxdate", maxDate);
 
@@ -103,7 +103,7 @@ QSqlQueryModel *ClientModel::getClientsModelFiltered(QString firstname, QString 
 
 	QSqlQuery query(db);
 
-	query.prepare("SELECT Id, Nom, Prenom, Adresse, Ville, CP, Commentaire, Tel, DateRdv, DureeRdv, Priorite FROM TClient WHERE Nom LIKE :lastname AND Prenom LIKE :firstname AND DateRdv BETWEEN :mindate AND :maxdate");
+	query.prepare("SELECT Id, Nom, Prenom, Adresse, Ville, CP, Commentaire, Tel, DateRdv, DureeRdv, Priorite FROM TClient WHERE Nom LIKE LOWER(:lastname) AND Prenom LIKE LOWER(:firstname) AND DateRdv BETWEEN :mindate AND :maxdate");
 
 	query.bindValue(":lastname", lastname + "%");
 	query.bindValue(":firstname", firstname + "%");
