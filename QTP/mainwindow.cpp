@@ -9,6 +9,7 @@
 #include "views/staffview.h"
 #include "model/accountmodel.h"
 #include "model/staffmodel.h"
+#include "model/clientmodel.h"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -30,6 +31,15 @@ MainWindow::MainWindow(QWidget *parent)
 
 	connect(ui->modifyStaffButton, SIGNAL(clicked(bool)), this, SLOT(onModifyStaffButtonCliked()));
 	connect(ui->deleteStaffButton, SIGNAL(clicked(bool)), this, SLOT(onDeleteStaffButtonCliked()));
+
+	connect(ui->clientSearchPushButton, SIGNAL(clicked(bool)), this, SLOT(onClientSearch()));
+	connect(ui->clientSearchFirstNameEdit, SIGNAL(textChanged(QString)), this, SLOT(onClientSearch()));
+	connect(ui->clientSearchLastNameEdit, SIGNAL(textChanged(QString)), this, SLOT(onClientSearch()));
+	connect(ui->clientSearchStartDate, SIGNAL(dateChanged(QDate)), this, SLOT(onClientSearch()));
+	connect(ui->clientSearchEndDate, SIGNAL(dateChanged(QDate)), this, SLOT(onClientSearch()));
+
+	// Client table view.
+	ui->clientSearchTableView->setModel(ClientModel::getClientsModel());
 }
 
 MainWindow::~MainWindow()
@@ -104,4 +114,10 @@ void MainWindow::onDeleteStaffButtonCliked()
 
 	// Update staff view.
 	ui->staffTreeView->refreshData();
+}
+
+void MainWindow::onClientSearch()
+{
+	QSqlQueryModel *model = ClientModel::getClientsModelFiltered(ui->clientSearchFirstNameEdit->text(), ui->clientSearchLastNameEdit->text(), ui->clientSearchStartDate->date(), ui->clientSearchEndDate->date());
+	ui->clientSearchTableView->setModel(model);
 }
