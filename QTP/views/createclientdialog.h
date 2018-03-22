@@ -2,6 +2,7 @@
 #define CREATECLIENTDIALOG_H
 
 #include <QDialog>
+#include <QStandardItemModel>
 
 namespace Ui {
 class CreateClientDialog;
@@ -37,9 +38,20 @@ class CreateClientDialog : public QDialog
 		 */
 		void onDialogRejected();
 
+		/**
+		 * @brief onAddStaffButtonClicked slot called when the user wants to add a staff member to the staff list.
+		 */
+		void onAddStaffButtonClicked();
+
+		/**
+		 * @brief onRemoveStaffButtonClicked slot called when the user wants to remove a staff member from the staff list.
+		 */
+		void onRemoveStaffButtonClicked();
+
 	private:
 		// User interface.
 		Ui::CreateClientDialog *ui;
+		QStandardItemModel *availableStaffModel, *selectedStaffModel;
 };
 
 #endif // CREATECLIENTDIALOG_H
