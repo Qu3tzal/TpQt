@@ -44,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 	// Client table view.
 	ui->clientSearchTableView->setModel(ClientModel::getClientsModel());
+    ui->clientSearchTableView->verticalHeader()->setVisible(false);
 }
 
 MainWindow::~MainWindow()
