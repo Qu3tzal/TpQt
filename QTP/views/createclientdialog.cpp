@@ -75,7 +75,7 @@ void CreateClientDialog::onDialogAccepted()
     {
         QModelIndex selectedStaffIndex = selectedStaffModel->index(i, 0);
         QModelIndex selectedStaffIdIndex = selectedStaffIndex.sibling(selectedStaffIndex.row(), 1);
-        AppointmentModel::createAppointment(selectedStaffIdIndex.data().toString().toInt(), clientId);
+        AppointmentModel::createAppointment(selectedStaffIdIndex.data(Qt::DisplayRole).toString().toInt(), clientId);
     }
 }
 

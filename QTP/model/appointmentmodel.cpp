@@ -17,7 +17,7 @@ int AppointmentModel::createAppointment(int staffId, int clientId)
     query.prepare("INSERT INTO TRdv (IdClient, IdRessource) "
                   "VALUES (:idC, :idS)");
     query.bindValue(":idC", clientId);
-    query.bindValue(":idC", staffId);
+    query.bindValue(":idS", staffId);
 
     if(!query.exec())
     {
