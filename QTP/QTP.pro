@@ -30,7 +30,9 @@ SOURCES += main.cpp\
     model/accountmodel.cpp \
     views/clientview.cpp \
     model/client.cpp \
-    model/appointmentscheduler.cpp
+    model/appointmentscheduler.cpp \
+    model/appointmentmodel.cpp \
+    model/appointment.cpp
 
 HEADERS  += mainwindow.h \
     authentificationdialog.h \
@@ -49,7 +51,9 @@ HEADERS  += mainwindow.h \
     model/accountmodel.h \
     views/clientview.h \
     model/client.h \
-    model/appointmentscheduler.h
+    model/appointmentscheduler.h \
+    model/appointmentmodel.h \
+    model/appointment.h
 
 FORMS    += mainwindow.ui \
     authentificationdialog.ui \
