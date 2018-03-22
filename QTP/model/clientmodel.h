@@ -4,6 +4,7 @@
 #include "databasecreator.h"
 #include "client.h"
 
+#include <QtSql>
 #include <QList>
 
 class ClientModel
@@ -13,7 +14,13 @@ class ClientModel
 		 * @brief getClientsList
 		 * @return a list containing all the clients
 		 */
-		QList<Client> getClientsList();
+		static QList<Client> getClientsList();
+
+		/**
+		 * @brief getClientsList
+		 * @return a model containing all the clients
+		 */
+		static QSqlQueryModel *getClientsModel();
 
 		/**
 		 * @brief getClientsListFiltered
@@ -23,7 +30,17 @@ class ClientModel
 		 * @param maxDate
 		 * @return a list containing the clients filtered
 		 */
-		QList<Client> getClientsListFiltered(QString firstname, QString lastname, QDate minDate, QDate maxDate);
+		static QList<Client> getClientsListFiltered(QString firstname, QString lastname, QDate minDate, QDate maxDate);
+
+		/**
+		 * @brief getClientsModelFiltered
+		 * @param firstname
+		 * @param lastname
+		 * @param minDate
+		 * @param maxDate
+		 * @return a model containing the clients filtered
+		 */
+		static QSqlQueryModel *getClientsModelFiltered(QString firstname, QString lastname, QDate minDate, QDate maxDate);
 };
 
 #endif // CLIENTMODEL_H

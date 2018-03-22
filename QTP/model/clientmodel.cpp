@@ -37,6 +37,25 @@ QList<Client> ClientModel::getClientsList()
 	return clients;
 }
 
+QSqlQueryModel *ClientModel::getClientsModel()
+{
+	QSqlDatabase db = DatabaseCreator::getInstance();
+
+	QSqlQuery query(db);
+
+	query.prepare("SELECT Id, Nom, Prenom, Adresse, Ville, CP, Commentaire, Tel, DateRdv, DureeRdv, Priorite FROM TClient");
+
+	if(!query.exec())
+	{
+		qDebug() << "Error while getting the client list : " << query.lastError();
+	}
+
+	QSqlQueryModel *queryModel = new QSqlQueryModel();
+	queryModel->setQuery(query);
+
+	return queryModel;
+}
+
 QList<Client> ClientModel::getClientsListFiltered(QString firstname, QString lastname, QDate minDate, QDate maxDate)
 {
 	QList<Client> clients;
@@ -76,4 +95,28 @@ QList<Client> ClientModel::getClientsListFiltered(QString firstname, QString las
 	}
 
 	return clients;
+}
+
+QSqlQueryModel *ClientModel::getClientsModelFiltered(QString firstname, QString lastname, QDate minDate, QDate maxDate)
+{
+	QSqlDatabase db = DatabaseCreator::getInstance();
+
+	QSqlQuery query(db);
+
+	query.prepare("SELECT Id, Nom, Prenom, Adresse, Ville, CP, Commentaire, Tel, DateRdv, DureeRdv, Priorite FROM TClient WHERE Nom LIKE :lastname AND Prenom LIKE :firstname AND DateRdv BETWEEN :mindate AND :maxdate");
+
+	query.bindValue(":lastname", lastname + "%");
+	query.bindValue(":firstname", firstname + "%");
+	query.bindValue(":mindate", minDate);
+	query.bindValue(":maxdate", maxDate);
+
+	if(!query.exec())
+	{
+		qDebug() << "Error while getting the client list (with filters) : " << query.lastError();
+	}
+
+	QSqlQueryModel *queryModel = new QSqlQueryModel();
+	queryModel->setQuery(query);
+
+	return queryModel;
 }
