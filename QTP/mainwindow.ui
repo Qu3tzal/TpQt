@@ -103,7 +103,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QTableView" name="clientSearchTableView"/>
+         <widget class="ClientView" name="clientSearchTableView"/>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -206,7 +206,7 @@
      <x>0</x>
      <y>0</y>
      <width>903</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -318,6 +318,11 @@
    <class>StaffView</class>
    <extends>QTreeView</extends>
    <header>views/staffview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ClientView</class>
+   <extends>QTableView</extends>
+   <header>views/clientview.h</header>
   </customwidget>
  </customwidgets>
  <resources>
