@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     model/staffmodel.cpp \
     model/account.cpp \
     model/accountmodel.cpp \
-    views/clientview.cpp
+    views/clientview.cpp \
+    model/client.cpp
 
 HEADERS  += mainwindow.h \
     authentificationdialog.h \
@@ -45,7 +46,8 @@ HEADERS  += mainwindow.h \
     model/staffmodel.h \
     model/account.h \
     model/accountmodel.h \
-    views/clientview.h
+    views/clientview.h \
+    model/client.h
 
 FORMS    += mainwindow.ui \
     authentificationdialog.ui \
