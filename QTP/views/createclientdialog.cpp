@@ -80,8 +80,6 @@ void CreateClientDialog::onAddStaffButtonClicked()
 
 	selectedStaffModel->invisibleRootItem()->appendRow(staffItem);
 	availableStaffModel->removeRow(selectedStaffIndex.row());
-
-	qDebug() << "Added" << staffNameItem->data().toString() << "#" << staffIdItem->data().toString();
 }
 
 void CreateClientDialog::onRemoveStaffButtonClicked()
@@ -104,6 +102,4 @@ void CreateClientDialog::onRemoveStaffButtonClicked()
 	availableStaffModel->invisibleRootItem()->appendRow(staffItem);
 	availableStaffModel->sort(0);
 	selectedStaffModel->removeRow(selectedStaffIndex.row());
-
-	qDebug() << "Removed" << staffNameItem->data().toString() << "#" << staffIdItem->data().toString();
 }
