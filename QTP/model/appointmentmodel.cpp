@@ -152,3 +152,46 @@ void AppointmentModel::deleteAppointmentById(int id)
         qDebug() << "Error while account staff : " << query.lastError();
     }
 }
+
+void AppointmentModel::deleteAppointmentByClientId(int clientId)
+{
+    QSqlDatabase db = DatabaseCreator::getInstance();
+    QSqlQuery query(db);
+
+    query.prepare("DELETE FROM TRdv WHERE IdClient = :id");
+    query.bindValue(":id", clientId);
+
+    if(!query.exec())
+    {
+        qDebug() << "Error while account staff : " << query.lastError();
+    }
+}
+
+QList<int> AppointmentModel::getStaffByClientId(int clientId)
+{
+    QList<int> staffs;
+
+    QSqlDatabase db = DatabaseCreator::getInstance();
+
+    QSqlQuery query(db);
+    query.setForwardOnly(true);
+
+    query.prepare("SELECT IdRessource FROM TRdv WHERE IdClient = :id");
+    query.bindValue(":id", clientId);
+    bool querySuccess = query.exec();
+
+    if(!querySuccess)
+    {
+        qDebug() << "Error while getting ressources list : " << query.lastError().text();
+    }
+    else
+    {
+        while(query.next())
+        {
+            staffs.append(query.value(0).toInt());
+        }
+    }
+
+    return staffs;
+
+}

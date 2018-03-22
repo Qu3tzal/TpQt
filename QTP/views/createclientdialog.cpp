@@ -17,9 +17,20 @@ CreateClientDialog::CreateClientDialog(int clientId, QWidget *parent)
 {
 	// Load the UI.
 	ui->setupUi(this);
-    if(clientId != -1)
+    if(clientId != 0)
     {
+        // Auto fill the form
         client = ClientModel::getClientById(clientId);
+        ui->nameLineEdit->setText(client.getLastName());
+        ui->firstnameLineEdit->setText(client.getFirstName());
+        ui->addressLineEdit->setText(client.getAdress());
+        ui->cityLineEdit->setText(client.getCity());
+        ui->zipCodeSpinBox->setValue(client.getPostalCode());
+        ui->commentTextEdit->setText(client.getCommentary());
+        ui->phoneNumberLineEdit->setText(QString::number(client.getPhoneNumber()));
+        ui->dateEdit->setDate(client.getAppointmentDate());
+        ui->lengthAppointmentSpinBox->setValue(client.getAppointmentDuration());
+        ui->prioritySpinBox->setValue(client.getPriority());
         setWindowTitle("Modification");
     }
 	// Connections.
@@ -33,16 +44,50 @@ CreateClientDialog::CreateClientDialog(int clientId, QWidget *parent)
 	availableStaffModel = new QStandardItemModel(ui->availableStaffListView);
 	selectedStaffModel = new QStandardItemModel(ui->selectedStaffListView);
 
-	for(int i(0) ; i < staffs.size() ; ++i)
-	{
-		QStandardItem* staffNameItem = new QStandardItem(staffs[i].getFirstName() + " " + staffs[i].getLastName());
-		QStandardItem* staffIdItem = new QStandardItem(QString::number(staffs[i].getId()));
+    if(clientId != 0)
+    {
+        QList<int> staffs = AppointmentModel::getStaffByClientId(clientId);
+        QList<Staff> allStaffs = StaffModel::getStaffList();
 
-		QList<QStandardItem*> staffItems;
-		staffItems << staffNameItem << staffIdItem;
+        for(int i(0); i < staffs.size(); i++)
+        {
+            Staff staff = StaffModel::getStaffById(staffs[i]);
+            QStandardItem* staffNameItem = new QStandardItem(staff.getFirstName() + " " + staff.getLastName());
+            QStandardItem* staffIdItem = new QStandardItem(QString::number(staff.getId()));
 
-		availableStaffModel->invisibleRootItem()->appendRow(staffItems);
-	}
+            QList<QStandardItem*> staffItems;
+            staffItems << staffNameItem << staffIdItem;
+
+            selectedStaffModel->invisibleRootItem()->appendRow(staffItems);
+        }
+        for(int i(0); i < allStaffs.size(); i++)
+        {
+            if(!staffs.contains(allStaffs[i].getId()))
+            {
+                QStandardItem* staffNameItem = new QStandardItem(allStaffs[i].getFirstName() + " " + allStaffs[i].getLastName());
+                QStandardItem* staffIdItem = new QStandardItem(QString::number(allStaffs[i].getId()));
+
+                QList<QStandardItem*> staffItems;
+                staffItems << staffNameItem << staffIdItem;
+
+                availableStaffModel->invisibleRootItem()->appendRow(staffItems);
+            }
+
+        }
+    }
+    else
+    {
+        for(int i(0) ; i < staffs.size() ; ++i)
+        {
+            QStandardItem* staffNameItem = new QStandardItem(staffs[i].getFirstName() + " " + staffs[i].getLastName());
+            QStandardItem* staffIdItem = new QStandardItem(QString::number(staffs[i].getId()));
+
+            QList<QStandardItem*> staffItems;
+            staffItems << staffNameItem << staffIdItem;
+
+            availableStaffModel->invisibleRootItem()->appendRow(staffItems);
+        }
+    }
 
 	availableStaffModel->sort(0);
 	ui->availableStaffListView->setModel(availableStaffModel);
@@ -60,22 +105,47 @@ CreateClientDialog::~CreateClientDialog()
 
 void CreateClientDialog::onDialogAccepted()
 {
-    client = Client(-1, ui->nameLineEdit->text()
-                    , ui->firstnameLineEdit->text()
-                    , ui->addressLineEdit->text()
-                    , ui->cityLineEdit->text()
-                    , ui->zipCodeSpinBox->value()
-                    , ui->commentTextEdit->toPlainText()
-                    , ui->phoneNumberLineEdit->text().toInt()
-                    , ui->dateEdit->date()
-                    , ui->lengthAppointmentSpinBox->value()
-                    , ui->prioritySpinBox->value());
-    int clientId = ClientModel::createClient(client);
-    for(int i(0); i < selectedStaffModel->rowCount(); i++)
+    if(client.getId() != 0)
     {
-        QModelIndex selectedStaffIndex = selectedStaffModel->index(i, 0);
-        QModelIndex selectedStaffIdIndex = selectedStaffIndex.sibling(selectedStaffIndex.row(), 1);
-        AppointmentModel::createAppointment(selectedStaffIdIndex.data(Qt::DisplayRole).toString().toInt(), clientId);
+        client = Client(client.getId(), ui->nameLineEdit->text()
+                        , ui->firstnameLineEdit->text()
+                        , ui->addressLineEdit->text()
+                        , ui->cityLineEdit->text()
+                        , ui->zipCodeSpinBox->value()
+                        , ui->commentTextEdit->toPlainText()
+                        , ui->phoneNumberLineEdit->text().toInt()
+                        , ui->dateEdit->date()
+                        , ui->lengthAppointmentSpinBox->value()
+                        , ui->prioritySpinBox->value());
+        ClientModel::updateClient(client);
+
+        AppointmentModel::deleteAppointmentByClientId(client.getId());
+        for(int i(0); i < selectedStaffModel->rowCount(); i++)
+        {
+            QModelIndex selectedStaffIndex = selectedStaffModel->index(i, 0);
+            QModelIndex selectedStaffIdIndex = selectedStaffIndex.sibling(selectedStaffIndex.row(), 1);
+            AppointmentModel::createAppointment(selectedStaffIdIndex.data(Qt::DisplayRole).toString().toInt(), client.getId());
+        }
+    }
+    else
+    {
+        client = Client(0, ui->nameLineEdit->text()
+                        , ui->firstnameLineEdit->text()
+                        , ui->addressLineEdit->text()
+                        , ui->cityLineEdit->text()
+                        , ui->zipCodeSpinBox->value()
+                        , ui->commentTextEdit->toPlainText()
+                        , ui->phoneNumberLineEdit->text().toInt()
+                        , ui->dateEdit->date()
+                        , ui->lengthAppointmentSpinBox->value()
+                        , ui->prioritySpinBox->value());
+        int clientId = ClientModel::createClient(client);
+        for(int i(0); i < selectedStaffModel->rowCount(); i++)
+        {
+            QModelIndex selectedStaffIndex = selectedStaffModel->index(i, 0);
+            QModelIndex selectedStaffIdIndex = selectedStaffIndex.sibling(selectedStaffIndex.row(), 1);
+            AppointmentModel::createAppointment(selectedStaffIdIndex.data(Qt::DisplayRole).toString().toInt(), clientId);
+        }
     }
 }
 

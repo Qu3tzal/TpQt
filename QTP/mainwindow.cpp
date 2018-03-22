@@ -10,6 +10,7 @@
 #include "model/accountmodel.h"
 #include "model/staffmodel.h"
 #include "model/clientmodel.h"
+#include "model/appointmentmodel.h"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -54,7 +55,7 @@ void MainWindow::onCreateClientAction()
 {
 	setStatusTip("Creating a new client");
 
-    CreateClientDialog *ccd = new CreateClientDialog(-1, this);
+    CreateClientDialog *ccd = new CreateClientDialog(0, this);
 	ccd->exec();
 
 	// Refresh the client view.
@@ -131,10 +132,29 @@ void MainWindow::onModifyClientButtonClicked()
 {
 	// Get the selected client.
 	QModelIndex selectedClient = ui->clientSearchTableView->currentIndex();
+
+    int clientId = ui->clientSearchTableView->model()->index(selectedClient.row(), 0).data().toString().toInt();
+qDebug() << clientId;
+    CreateClientDialog *csd = new CreateClientDialog(clientId, this);
+    csd->exec();
+
+    // Refresh the staff view.
+    QSqlQueryModel *model = ClientModel::getClientsModel();
+    ui->clientSearchTableView->setModel(model);
 }
 
 void MainWindow::onDeleteClientButtonClicked()
 {
 	// Get the selected client.
-	QModelIndex selectedClient = ui->clientSearchTableView->currentIndex();
+    QModelIndex selectedClient = ui->clientSearchTableView->currentIndex();
+
+    int clientId = ui->clientSearchTableView->model()->index(selectedClient.row(), 0).data().toString().toInt();
+
+    // Delete Appointments and client
+    ClientModel::deleteClientById(clientId);
+    AppointmentModel::deleteAppointmentByClientId(clientId);
+
+    // Refresh the staff view.
+    QSqlQueryModel *model = ClientModel::getClientsModel();
+    ui->clientSearchTableView->setModel(model);
 }

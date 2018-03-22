@@ -18,7 +18,7 @@ Client::Client(int _id, QString _lastName, QString _firstName, QString _adress, 
 }
 
 Client::Client()
-    :id(-1)
+    :id(0)
     , firstName("")
     ,lastName("")
     , adress("")

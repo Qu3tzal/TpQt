@@ -34,7 +34,6 @@ class AccountModel
          * @param account
          */
         static void updateAccount(Account account);
-
 };
 
 #endif // ACCOUNTMODEL_H

@@ -52,6 +52,21 @@ public:
      * @param id
      */
     static void deleteAppointmentById(int id);
+
+    /**
+     * @brief deleteAppointmentByClientId
+     * @param clientId
+     */
+    static void deleteAppointmentByClientId(int clientId);
+
+
+    /**
+     * @brief getStaffByClientId
+     * @param clientId
+     * @return list of staff ids;
+     */
+    static QList<int> getStaffByClientId(int clientId);
+
 };
 
 #endif // APPOINTMENTMODEL_H

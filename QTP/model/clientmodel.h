@@ -55,6 +55,18 @@ class ClientModel
          * @return the client id
          */
         static int createClient(Client client);
+
+        /**
+         * @brief deleteClientById
+         * @param id
+         */
+        static void deleteClientById(int id);
+
+        /**
+         * @brief updateClient
+         * @param client
+         */
+        static void updateClient(Client client);
 };
 
 #endif // CLIENTMODEL_H

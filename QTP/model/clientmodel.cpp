@@ -124,13 +124,17 @@ QSqlQueryModel *ClientModel::getClientsModelFiltered(QString firstname, QString 
 Client ClientModel::getClientById(int id)
 {
     Client client;
+
     QSqlDatabase db = DatabaseCreator::getInstance();
 
     QSqlQuery query(db);
 
-    if(!query.exec("SELECT Id, Nom, Prenom, Adresse, Ville, CP, Commentaire, Tel, DateRdv, DureeRdv, Priorite FROM TClient"))
+    query.prepare("SELECT Id, Nom, Prenom, Adresse, Ville, CP, Commentaire, Tel, DateRdv, DureeRdv, Priorite FROM TClient WHERE Id = :id");
+    query.bindValue(":id", id);
+
+    if(!query.exec())
     {
-        qDebug() << "Error while getting the client list : " << query.lastError();
+        qDebug() << "Error while getting the client : " << query.lastError();
     }
     else
     {
@@ -180,4 +184,44 @@ int ClientModel::createClient(Client client)
     }
 
     return query.lastInsertId().toInt();
+}
+
+void ClientModel::deleteClientById(int id)
+{
+    QSqlDatabase db = DatabaseCreator::getInstance();
+    QSqlQuery query(db);
+
+    query.prepare("DELETE FROM TClient WHERE Id = :id");
+    query.bindValue(":id", id);
+
+    if(!query.exec())
+    {
+        qDebug() << "Error while deleting client : " << query.lastError();
+    }
+}
+
+void ClientModel::updateClient(Client client)
+{
+    QSqlDatabase db = DatabaseCreator::getInstance();
+
+    QSqlQuery query(db);
+
+    query.prepare("UPDATE TClient SET Nom = :Nom, Prenom = :Prenom, Adresse = :Adresse, Ville = :Ville, CP = :CP, Commentaire= :Commentaire, Tel = :Tel, DateRdv = :DateRdv, DureeRdv = :DureeRdv, Priorite =  :Priorite WHERE Id = :id ");
+    query.bindValue(":Nom", client.getLastName());
+    query.bindValue(":Prenom", client.getFirstName());
+    query.bindValue(":Adresse", client.getAdress());
+    query.bindValue(":Ville", client.getCity());
+    query.bindValue(":CP", client.getPostalCode());
+    query.bindValue(":Commentaire", client.getCommentary());
+    query.bindValue(":Tel", client.getPhoneNumber());
+    query.bindValue(":DateRdv", client.getAppointmentDate());
+    query.bindValue(":DureeRdv", client.getAppointmentDuration());
+    query.bindValue(":Priorite", client.getPriority());
+    query.bindValue(":id", client.getId());
+
+
+    if(!query.exec())
+    {
+        qDebug() << "Error while creating Client : " << query.lastError();
+    }
 }
