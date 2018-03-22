@@ -40,6 +40,10 @@ CreateClientDialog::CreateClientDialog(QWidget *parent)
 	availableStaffModel->sort(0);
 	ui->availableStaffListView->setModel(availableStaffModel);
 	ui->selectedStaffListView->setModel(selectedStaffModel);
+
+    QRegExp ipRegex ("[0-9]*");
+    QRegExpValidator *ipValidator = new QRegExpValidator(ipRegex, this);
+    ui->phoneNumberLineEdit->setValidator(ipValidator);
 }
 
 CreateClientDialog::~CreateClientDialog()
