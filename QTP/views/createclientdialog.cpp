@@ -7,14 +7,21 @@
 
 #include "model/staff.h"
 #include "model/staffmodel.h"
+#include "model/clientmodel.h"
+#include "model/appointmentmodel.h"
 
-CreateClientDialog::CreateClientDialog(QWidget *parent)
+CreateClientDialog::CreateClientDialog(int clientId, QWidget *parent)
 	: QDialog(parent)
 	, ui(new Ui::CreateClientDialog)
+    , client()
 {
 	// Load the UI.
 	ui->setupUi(this);
-
+    if(clientId != -1)
+    {
+        client = ClientModel::getClientById(clientId);
+        setWindowTitle("Modification");
+    }
 	// Connections.
 	connect(this, SIGNAL(accepted()), this, SLOT(onDialogAccepted()));
 	connect(this, SIGNAL(rejected()), this, SLOT(onDialogRejected()));
@@ -53,7 +60,22 @@ CreateClientDialog::~CreateClientDialog()
 
 void CreateClientDialog::onDialogAccepted()
 {
-
+    client = Client(-1, ui->nameLineEdit->text()
+                    , ui->firstnameLineEdit->text()
+                    , ui->addressLineEdit->text()
+                    , ui->cityLineEdit->text()
+                    , ui->zipCodeSpinBox->value()
+                    , ui->commentTextEdit->toPlainText()
+                    , ui->phoneNumberLineEdit->text().toInt()
+                    , ui->dateEdit->date()
+                    , ui->lengthAppointmentSpinBox->value()
+                    , ui->prioritySpinBox->value());
+    int clientId = ClientModel::createClient(client);
+    for(int i(0); i < selectedStaffModel->rowCount(); i++)
+    {
+        QModelIndex selectedStaffIndex = selectedStaffModel->index(i, 0);
+        QModelIndex selectedStaffIdIndex = selectedStaffIndex.sibling(selectedStaffIndex.row(), 1);
+    }
 }
 
 void CreateClientDialog::onDialogRejected()

@@ -17,6 +17,21 @@ Client::Client(int _id, QString _lastName, QString _firstName, QString _adress, 
 
 }
 
+Client::Client()
+    :id(-1)
+    , firstName("")
+    ,lastName("")
+    , adress("")
+    , city("")
+    , postalCode(-1)
+    , appointmentDate(QDate())
+    , appointmentDuration(-1)
+    , priority(-1)
+    , commentary("")
+    , phoneNumber(-1)
+{
+
+}
 int Client::getId() const
 {
     return id;

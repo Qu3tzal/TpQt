@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 	QApplication a(argc, argv);
 
 	// Uncomment only to create the database.
-	//DatabaseCreator::createDB();
+    //DatabaseCreator::createDB();
 
 	// Launches the authentification dialog.
 	AuthentificationDialog authentification;

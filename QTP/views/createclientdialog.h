@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QStandardItemModel>
+#include "model/client.h"
 
 namespace Ui {
 class CreateClientDialog;
@@ -20,7 +21,7 @@ class CreateClientDialog : public QDialog
 		 * @brief Constructor.
 		 * @param parent the parent of this dialog
 		 */
-		explicit CreateClientDialog(QWidget *parent = 0);
+        explicit CreateClientDialog(int clientId, QWidget *parent = 0);
 
 		/**
 		 * @brief Destructor.
@@ -52,6 +53,7 @@ class CreateClientDialog : public QDialog
 		// User interface.
 		Ui::CreateClientDialog *ui;
 		QStandardItemModel *availableStaffModel, *selectedStaffModel;
+        Client client;
 };
 
 #endif // CREATECLIENTDIALOG_H

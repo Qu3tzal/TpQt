@@ -41,6 +41,20 @@ class ClientModel
 		 * @return a model containing the clients filtered
 		 */
 		static QSqlQueryModel *getClientsModelFiltered(QString firstname, QString lastname, QDate minDate, QDate maxDate);
+
+        /**
+         * @brief getClientsById
+         * @param id
+         * @return the client
+         */
+        static Client getClientById(int id);
+
+        /**
+         * @brief createClient
+         * @param client
+         * @return the client id
+         */
+        static int createClient(Client client);
 };
 
 #endif // CLIENTMODEL_H

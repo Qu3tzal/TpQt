@@ -42,7 +42,7 @@ QList<Appointment> AppointmentModel::getAppointmentsByDate(QDate date)
 
     if(!querySuccess)
     {
-        qDebug() << "Error while getting staff list : " << query.lastError().text();
+        qDebug() << "Error while getting account list : " << query.lastError().text();
     }
     else
     {
@@ -70,7 +70,7 @@ QList<Appointment> AppointmentModel::getAppointmentsById(int appointmentId)
 
     if(!querySuccess)
     {
-        qDebug() << "Error while getting staff list : " << query.lastError().text();
+        qDebug() << "Error while getting account list : " << query.lastError().text();
     }
     else
     {
@@ -98,7 +98,7 @@ QList<Appointment> AppointmentModel::getAppointmentsByStaffId(int staffId)
 
     if(!querySuccess)
     {
-        qDebug() << "Error while getting staff list : " << query.lastError().text();
+        qDebug() << "Error while getting account list : " << query.lastError().text();
     }
     else
     {
@@ -126,7 +126,7 @@ QList<Appointment> AppointmentModel::getAppointmentsByClientId(int clientId)
 
     if(!querySuccess)
     {
-        qDebug() << "Error while getting staff list : " << query.lastError().text();
+        qDebug() << "Error while getting account list : " << query.lastError().text();
     }
     else
     {
@@ -149,6 +149,6 @@ void AppointmentModel::deleteAppointmentById(int id)
 
     if(!query.exec())
     {
-        qDebug() << "Error while removing staff : " << query.lastError();
+        qDebug() << "Error while account staff : " << query.lastError();
     }
 }

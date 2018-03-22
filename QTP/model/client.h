@@ -9,6 +9,7 @@ class Client
 public:
 		Client(int _id, QString _lastName, QString _firstName, QString _adress, QString _city, int _postalCode, QString _commentary, int _phoneNumber, QDate _appointmentDate, int _appointmentDuration, int _priority);
 
+        Client();
     /**
      * @brief getId
      * @return The client id

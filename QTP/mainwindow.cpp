@@ -54,10 +54,12 @@ void MainWindow::onCreateClientAction()
 {
 	setStatusTip("Creating a new client");
 
-	CreateClientDialog *ccd = new CreateClientDialog(this);
+    CreateClientDialog *ccd = new CreateClientDialog(-1, this);
 	ccd->exec();
 
 	// Refresh the client view.
+    QSqlQueryModel *model = ClientModel::getClientsModel();
+    ui->clientSearchTableView->setModel(model);
 }
 
 void MainWindow::onCreateStaffAction()
