@@ -2,9 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
-#include "controler/clientcontroler.h"
-#include "controler/staffcontroler.h"
+#include <QSqlQueryModel>
 
 namespace Ui {
 class MainWindow;
@@ -60,13 +58,14 @@ class MainWindow : public QMainWindow
 		 */
 		void onDeleteStaffButtonCliked();
 
+		/**
+		 * @brief onClientSearch slot called when the user wants to updates the client's search.
+		 */
+		void onClientSearch();
+
 	private:
 		// The user interface class.
 		Ui::MainWindow *ui;
-
-        StaffControler stafControler;
-
-        ClientControler clientControler;
 };
 
 #endif // MAINWINDOW_H
