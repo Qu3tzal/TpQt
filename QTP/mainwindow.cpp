@@ -38,6 +38,9 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(ui->clientSearchStartDate, SIGNAL(dateChanged(QDate)), this, SLOT(onClientSearch()));
 	connect(ui->clientSearchEndDate, SIGNAL(dateChanged(QDate)), this, SLOT(onClientSearch()));
 
+	connect(ui->modifyClientPushButton, SIGNAL(clicked(bool)), this, SLOT(onModifyClientButtonClicked()));
+	connect(ui->removeClientPushButton, SIGNAL(clicked(bool)), this, SLOT(onDeleteClientButtonClicked()));
+
 	// Client table view.
 	ui->clientSearchTableView->setModel(ClientModel::getClientsModel());
 }
@@ -120,4 +123,16 @@ void MainWindow::onClientSearch()
 {
 	QSqlQueryModel *model = ClientModel::getClientsModelFiltered(ui->clientSearchFirstNameEdit->text(), ui->clientSearchLastNameEdit->text(), ui->clientSearchStartDate->date(), ui->clientSearchEndDate->date());
 	ui->clientSearchTableView->setModel(model);
+}
+
+void MainWindow::onModifyClientButtonClicked()
+{
+	// Get the selected client.
+	QModelIndex selectedClient = ui->clientSearchTableView->currentIndex();
+}
+
+void MainWindow::onDeleteClientButtonClicked()
+{
+	// Get the selected client.
+	QModelIndex selectedClient = ui->clientSearchTableView->currentIndex();
 }

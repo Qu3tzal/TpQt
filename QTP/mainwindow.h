@@ -63,6 +63,9 @@ class MainWindow : public QMainWindow
 		 */
 		void onClientSearch();
 
+		void onModifyClientButtonClicked();
+		void onDeleteClientButtonClicked();
+
 	private:
 		// The user interface class.
 		Ui::MainWindow *ui;
