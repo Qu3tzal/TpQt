@@ -13,7 +13,7 @@ int AppointmentModel::createAppointment(int staffId, int clientId)
 {
     QSqlDatabase db = DatabaseCreator::getInstance();
     QSqlQuery query(db);
-
+    DatabaseCreator::insertNumber++;
     query.prepare("INSERT INTO TRdv (IdClient, IdRessource) "
                   "VALUES (:idC, :idS)");
     query.bindValue(":idC", clientId);

@@ -10,6 +10,8 @@
 #include "model/clientmodel.h"
 #include "model/appointmentmodel.h"
 
+#include "stringutil.h"
+
 CreateClientDialog::CreateClientDialog(int clientId, QWidget *parent)
 	: QDialog(parent)
 	, ui(new Ui::CreateClientDialog)
@@ -37,6 +39,12 @@ CreateClientDialog::CreateClientDialog(int clientId, QWidget *parent)
 
 		// Change window title.
 		setWindowTitle("Modification du client " + client.getFirstName() + " " + client.getLastName());
+        ui->dateEdit->setMaximumDate(QDate::currentDate().addDays(30));
+    }
+    else
+    {
+        // Date Filtre
+        ui->dateEdit->setDateRange(QDate::currentDate(), QDate::currentDate().addDays(30));
     }
 
 	// Connections.
@@ -113,6 +121,14 @@ CreateClientDialog::CreateClientDialog(int clientId, QWidget *parent)
 	QRegExp phoneRegex("[0-9]*");
 	QRegExpValidator *phoneValidator = new QRegExpValidator(phoneRegex, this);
 	ui->phoneNumberLineEdit->setValidator(phoneValidator);
+
+    // Capitalizer.
+    QFont font = ui->firstnameLineEdit->font();
+    font.setCapitalization(QFont::Capitalize);
+
+    ui->firstnameLineEdit->setFont(font);
+    ui->nameLineEdit->setFont(font);
+    ui->cityLineEdit->setFont(font);
 }
 
 CreateClientDialog::~CreateClientDialog()
@@ -124,12 +140,12 @@ void CreateClientDialog::onDialogAccepted()
 {
     if(client.getId() != 0)
     {
-        client = Client(client.getId(), ui->nameLineEdit->text()
-                        , ui->firstnameLineEdit->text()
+        client = Client(client.getId(), StringUtil::capitalize(ui->nameLineEdit->text())
+                        , StringUtil::capitalize(ui->firstnameLineEdit->text())
                         , ui->addressLineEdit->text()
-                        , ui->cityLineEdit->text()
+                        , StringUtil::capitalize(ui->cityLineEdit->text())
                         , ui->zipCodeSpinBox->value()
-                        , ui->commentTextEdit->toPlainText()
+                        , ui->commentTextEdit->toPlainText() + "\n" +  ui->remarkTextEdit->toPlainText()
                         , ui->phoneNumberLineEdit->text().toInt()
                         , ui->dateEdit->date()
                         , ui->lengthAppointmentSpinBox->value()
@@ -146,12 +162,12 @@ void CreateClientDialog::onDialogAccepted()
     }
     else
     {
-        client = Client(0, ui->nameLineEdit->text()
-                        , ui->firstnameLineEdit->text()
+        client = Client(0, StringUtil::capitalize(ui->nameLineEdit->text())
+                        , StringUtil::capitalize(ui->firstnameLineEdit->text())
                         , ui->addressLineEdit->text()
-                        , ui->cityLineEdit->text()
+                        , StringUtil::capitalize(ui->cityLineEdit->text())
                         , ui->zipCodeSpinBox->value()
-                        , ui->commentTextEdit->toPlainText()
+                        , ui->commentTextEdit->toPlainText() + "\n" +  ui->remarkTextEdit->toPlainText()
                         , ui->phoneNumberLineEdit->text().toInt()
                         , ui->dateEdit->date()
                         , ui->lengthAppointmentSpinBox->value()

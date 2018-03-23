@@ -44,6 +44,10 @@ class CreateStaffDialog : public QDialog
          * and hide or show login and password edit
          */
         void onComboBoxChanged();
+   signals:
+
+        void onStaffAdded();
+
 
 private:
 		// User interface.

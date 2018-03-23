@@ -118,7 +118,7 @@ QList<StaffType> StaffModel::getStaffTypes()
 int StaffModel::addStaff(Staff staff)
 {
     QSqlDatabase db = DatabaseCreator::getInstance();
-
+    DatabaseCreator::insertNumber++;
     QSqlQuery query(db);
 
 	query.prepare("INSERT INTO TRessource (Nom, Prenom, IdType) "

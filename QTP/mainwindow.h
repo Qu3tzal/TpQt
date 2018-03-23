@@ -63,8 +63,30 @@ class MainWindow : public QMainWindow
 		 */
 		void onClientSearch();
 
+        /**
+         * @brief onModifyClientButtonClicked
+         */
 		void onModifyClientButtonClicked();
+
+        /**
+         * @brief onDeleteClientButtonClicked
+         */
 		void onDeleteClientButtonClicked();
+
+        /**
+         * @brief onClientAdded
+         */
+        void onClientAdded();
+
+        /**
+         * @brief onExportStaffToXMLPushButton
+         */
+        void onExportStaffToXMLPushButton();
+
+        /**
+         * @brief onDiversAction
+         */
+        void onDiversAction();
 
 	private:
 		// The user interface class.

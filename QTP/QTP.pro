@@ -29,7 +29,9 @@ SOURCES += main.cpp\
     model/client.cpp \
     model/appointmentscheduler.cpp \
     model/appointmentmodel.cpp \
-    model/appointment.cpp
+    model/appointment.cpp \
+    views/createmiscdialog.cpp \
+    StringUtil.cpp
 
 HEADERS  += mainwindow.h \
     authentificationdialog.h \
@@ -47,12 +49,15 @@ HEADERS  += mainwindow.h \
     model/client.h \
     model/appointmentscheduler.h \
     model/appointmentmodel.h \
-    model/appointment.h
+    model/appointment.h \
+    views/createmiscdialog.h \
+    stringutil.h
 
 FORMS    += mainwindow.ui \
     authentificationdialog.ui \
     views/createclientdialog.ui \
-    views/createstaffdialog.ui
+    views/createstaffdialog.ui \
+    views/createmiscdialog.ui
 
 DISTFILES +=
 

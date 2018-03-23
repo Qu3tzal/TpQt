@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QFile>
 
+int DatabaseCreator::insertNumber = 0;
 
 DatabaseCreator::DatabaseCreator()
 {

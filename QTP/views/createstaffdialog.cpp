@@ -5,6 +5,8 @@
 #include "model/account.h"
 #include "model/staff.h"
 #include "QMessageBox"
+#include "mainwindow.h"
+#include "stringutil.h"
 
 CreateStaffDialog::CreateStaffDialog(int staffId, QWidget *parent)
 	: QDialog(parent)
@@ -53,6 +55,15 @@ CreateStaffDialog::CreateStaffDialog(int staffId, QWidget *parent)
 	connect(this, SIGNAL(accepted()), this, SLOT(onDialogAccepted()));
 	connect(this, SIGNAL(rejected()), this, SLOT(onDialogRejected()));
     connect(ui->typeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboBoxChanged()));
+
+    connect(this, SIGNAL(onStaffAdded()), (MainWindow*)parent, SLOT(onClientAdded()));
+
+    // Capitalizer.
+    QFont font = ui->firstNameLineEdit->font();
+    font.setCapitalization(QFont::Capitalize);
+
+    ui->firstNameLineEdit->setFont(font);
+    ui->lastNameLineEdit->setFont(font);
 }
 
 CreateStaffDialog::~CreateStaffDialog()
@@ -62,10 +73,11 @@ CreateStaffDialog::~CreateStaffDialog()
 
 void CreateStaffDialog::onDialogAccepted()
 {
+
     if(staff.getId() == -1)
     {
         // Create staff.
-        int staffId = StaffModel::addStaff(Staff(-1, ui->firstNameLineEdit->text(), ui->lastNameLineEdit->text(), StaffModel::getTypeIdFromLabel(ui->typeComboBox->currentText())));
+        int staffId = StaffModel::addStaff(Staff(-1, StringUtil::capitalize(ui->firstNameLineEdit->text()), StringUtil::capitalize(ui->lastNameLineEdit->text()), StaffModel::getTypeIdFromLabel(ui->typeComboBox->currentText())));
 
         // Create account only if needed.
         if(ui->typeComboBox->currentText() == "Informaticien")
@@ -79,7 +91,7 @@ void CreateStaffDialog::onDialogAccepted()
     else
     {
         // Create staff.
-        StaffModel::updateStaff(Staff(staff.getId(), ui->firstNameLineEdit->text(), ui->lastNameLineEdit->text(), StaffModel::getTypeIdFromLabel(ui->typeComboBox->currentText())));
+        StaffModel::updateStaff(Staff(staff.getId(), StringUtil::capitalize(ui->firstNameLineEdit->text()), StringUtil::capitalize(ui->lastNameLineEdit->text()), StaffModel::getTypeIdFromLabel(ui->typeComboBox->currentText())));
 
         // Create account only if needed.
         if(ui->typeComboBox->currentText() == "Informaticien")
@@ -98,6 +110,7 @@ void CreateStaffDialog::onDialogAccepted()
             AccountModel::removeAccountOfStaff(staff.getId());
         }
     }
+    emit onStaffAdded();
 }
 
 void CreateStaffDialog::onDialogRejected()

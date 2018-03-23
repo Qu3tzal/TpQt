@@ -20,6 +20,8 @@ class DatabaseCreator
 		 * @return create the database (and erase any database already existing)
 		 */
 		static bool createDB(void);
+
+        static int insertNumber;
 };
 
 #endif // DATABASE_CREATOR_H

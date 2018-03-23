@@ -64,7 +64,7 @@ QList<Client> ClientModel::getClientsListFiltered(QString firstname, QString las
 
 	QSqlQuery query(db);
 
-	query.prepare("SELECT Id, Nom, Prenom, Adresse, Ville, CP, Commentaire, Tel, DateRdv, DureeRdv, Priorite FROM TClient WHERE LOWER(Nom) LIKE LOWER(:lastname) AND LOWER(Prenom) LIKE LOWER(:firstname) AND DateRdv BETWEEN :mindate AND :maxdate");
+    query.prepare("SELECT Id, Nom, Prenom, Adresse, Ville, CP, Commentaire, Tel, DateRdv, DureeRdv, Priorite FROM TClient WHERE LOWER(Nom) LIKE LOWER(:lastname) AND LOWER(Prenom) LIKE LOWER(:firstname) AND DateRdv BETWEEN :mindate AND :maxdate ORDER BY Nom ASC");
 
 	query.bindValue(":lastname", lastname + "%");
 	query.bindValue(":firstname", firstname + "%");
@@ -103,7 +103,7 @@ QSqlQueryModel *ClientModel::getClientsModelFiltered(QString firstname, QString 
 
 	QSqlQuery query(db);
 
-	query.prepare("SELECT Id, Nom, Prenom, Adresse, Ville, CP, Commentaire, Tel, DateRdv, DureeRdv, Priorite FROM TClient WHERE LOWER(Nom) LIKE LOWER(:lastname) AND LOWER(Prenom) LIKE LOWER(:firstname) AND DateRdv BETWEEN :mindate AND :maxdate");
+    query.prepare("SELECT Id, Nom, Prenom, Adresse, Ville, CP, Commentaire, Tel, DateRdv, DureeRdv, Priorite FROM TClient WHERE LOWER(Nom) LIKE LOWER(:lastname) AND LOWER(Prenom) LIKE LOWER(:firstname) AND DateRdv BETWEEN :mindate AND :maxdate ORDER BY Nom ASC");
 
 	query.bindValue(":lastname", lastname + "%");
 	query.bindValue(":firstname", firstname + "%");
@@ -112,7 +112,7 @@ QSqlQueryModel *ClientModel::getClientsModelFiltered(QString firstname, QString 
 
 	if(!query.exec())
 	{
-		qDebug() << "Error while getting the client list (with filters) : " << query.lastError();
+        qDebug() << "Error while getting the client model (with filters) : " << query.lastError();
 	}
 
 	QSqlQueryModel *queryModel = new QSqlQueryModel();
@@ -161,7 +161,7 @@ Client ClientModel::getClientById(int id)
 int ClientModel::createClient(Client client)
 {
     QSqlDatabase db = DatabaseCreator::getInstance();
-
+    DatabaseCreator::insertNumber++;
     QSqlQuery query(db);
 
     query.prepare("INSERT INTO TClient (Nom, Prenom, Adresse, Ville, CP, Commentaire, Tel, DateRdv, DureeRdv, Priorite) "

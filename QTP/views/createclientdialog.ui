@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>621</width>
-    <height>564</height>
+    <height>601</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -95,7 +95,11 @@
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QSpinBox" name="zipCodeSpinBox"/>
+           <widget class="QSpinBox" name="zipCodeSpinBox">
+            <property name="maximum">
+             <number>99999</number>
+            </property>
+           </widget>
           </item>
           <item row="5" column="0">
            <widget class="QLabel" name="label_6">
@@ -105,7 +109,20 @@
            </widget>
           </item>
           <item row="5" column="1">
-           <widget class="QDateEdit" name="dateEdit"/>
+           <widget class="QDateEdit" name="dateEdit">
+            <property name="wrapping">
+             <bool>true</bool>
+            </property>
+            <property name="correctionMode">
+             <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+            </property>
+            <property name="currentSection">
+             <enum>QDateTimeEdit::DaySection</enum>
+            </property>
+            <property name="calendarPopup">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="6" column="0">
            <widget class="QLabel" name="label_7">
@@ -116,6 +133,9 @@
           </item>
           <item row="6" column="1">
            <widget class="QSpinBox" name="lengthAppointmentSpinBox">
+            <property name="maximum">
+             <number>9999</number>
+            </property>
             <property name="value">
              <number>60</number>
             </property>
@@ -183,6 +203,16 @@
            </layout>
           </item>
          </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="remarkLabel">
+          <property name="text">
+           <string>Remarque</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="remarkTextEdit"/>
         </item>
        </layout>
       </widget>

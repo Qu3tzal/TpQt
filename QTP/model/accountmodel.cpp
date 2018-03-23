@@ -9,6 +9,7 @@
 int AccountModel::createAccount(QString login, QString password, int idStaff)
 {
 	QSqlDatabase db = DatabaseCreator::getInstance();
+    DatabaseCreator::insertNumber++;
 	QSqlQuery query(db);
 
 	query.prepare("INSERT INTO TCompte (IdRessource, Login, MdP) "

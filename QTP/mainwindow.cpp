@@ -3,8 +3,11 @@
 
 #include <QMessageBox>
 #include <QDebug>
+#include <QFileDialog>
+#include <QXmlStreamWriter>
 
 #include "views/createclientdialog.h"
+#include "views/createmiscdialog.h"
 #include "views/createstaffdialog.h"
 #include "views/staffview.h"
 #include "model/accountmodel.h"
@@ -24,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 	// Connections.
 	connect(ui->actionCreateClient, SIGNAL(triggered(bool)), this, SLOT(onCreateClientAction()));
+    connect(ui->actionDivers, SIGNAL(triggered(bool)), this, SLOT(onDiversAction()));
 	connect(ui->actionToolbarCreateClient, SIGNAL(triggered(bool)), this, SLOT(onCreateClientAction()));
 	connect(ui->actionCreateStaff, SIGNAL(triggered(bool)), this, SLOT(onCreateStaffAction()));
 	connect(ui->actionToolbarCreateStaff, SIGNAL(triggered(bool)), this, SLOT(onCreateStaffAction()));
@@ -42,9 +46,13 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(ui->modifyClientPushButton, SIGNAL(clicked(bool)), this, SLOT(onModifyClientButtonClicked()));
 	connect(ui->removeClientPushButton, SIGNAL(clicked(bool)), this, SLOT(onDeleteClientButtonClicked()));
 
+    connect(ui->exportStaffToXMLPushButton, SIGNAL(clicked(bool)), this, SLOT(onExportStaffToXMLPushButton()));
+
 	// Client table view.
-	ui->clientSearchTableView->setModel(ClientModel::getClientsModel());
+    QSqlQueryModel *model = ClientModel::getClientsModel();
+    ui->clientSearchTableView->setModel(model);
     ui->clientSearchTableView->verticalHeader()->setVisible(false);
+    ui->clientSearchTableView->sortByColumn(1);
 }
 
 MainWindow::~MainWindow()
@@ -126,7 +134,7 @@ void MainWindow::onDeleteStaffButtonCliked()
 void MainWindow::onClientSearch()
 {
 	QSqlQueryModel *model = ClientModel::getClientsModelFiltered(ui->clientSearchFirstNameEdit->text(), ui->clientSearchLastNameEdit->text(), ui->clientSearchStartDate->date(), ui->clientSearchEndDate->date());
-	ui->clientSearchTableView->setModel(model);
+    ui->clientSearchTableView->setModel(model);
 }
 
 void MainWindow::onModifyClientButtonClicked()
@@ -158,4 +166,58 @@ void MainWindow::onDeleteClientButtonClicked()
     // Refresh the staff view.
     QSqlQueryModel *model = ClientModel::getClientsModel();
     ui->clientSearchTableView->setModel(model);
+}
+
+void MainWindow::onClientAdded()
+{
+    setStatusTip("Ajout de personne terminé");
+}
+
+void MainWindow::onExportStaffToXMLPushButton()
+{
+    // Get the filename.
+    QString filename = QFileDialog::getSaveFileName(this, "Exporter en XML", "C:\\", "Fichiers XML (*.xml)");
+
+    // Open the file.
+    QFile file(filename);
+    if(!file.open(QIODevice::WriteOnly))
+        QMessageBox::critical(this, "Erreur export XML", "Impossible d'écrire le fichier \"" + filename + "\".");
+
+    // Start the xml writer.
+    QXmlStreamWriter xmlWriter(&file);
+
+    // Start document.
+    xmlWriter.setAutoFormatting(true);
+    xmlWriter.writeStartDocument();
+    xmlWriter.writeStartElement("TRessource");
+
+    QList<Staff> staffList = StaffModel::getStaffList();
+
+    for(int i(0) ; i < staffList.size() ; ++i)
+    {
+        Staff& s = staffList[i];
+
+        xmlWriter.writeStartElement("Ressource");
+        xmlWriter.writeAttribute("Id", QString::number(s.getId()));
+            xmlWriter.writeTextElement("Nom", s.getLastName());
+            xmlWriter.writeTextElement("Prenom", s.getFirstName());
+        xmlWriter.writeEndElement();
+    }
+
+    // End document.
+    xmlWriter.writeEndElement();
+    xmlWriter.writeEndDocument();
+    file.close();
+
+    // Notify success.
+    QMessageBox::information(this, "Export XML réussi", "L'export XML vers le fichier \"" + filename + "\" a réussi.");
+}
+
+void MainWindow::onDiversAction()
+{
+    CreateMiscDialog *cmd = new CreateMiscDialog(this);
+    cmd->exec();
+
+    // Update staff view.
+    ui->staffTreeView->refreshData();
 }
