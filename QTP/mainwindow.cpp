@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
 	ui->setupUi(this);
 
 	// Maximize the window.
-	setWindowState(Qt::WindowMaximized);
+	//setWindowState(Qt::WindowMaximized);
 
 	// Connections.
 	connect(ui->actionCreateClient, SIGNAL(triggered(bool)), this, SLOT(onCreateClientAction()));
