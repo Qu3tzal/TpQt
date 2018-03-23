@@ -19,9 +19,7 @@ SOURCES += main.cpp\
     views/createclientdialog.cpp \
     views/createstaffdialog.cpp \
     views/about.cpp \
-    controler/clientcontroler.cpp \
     model/clientmodel.cpp \
-    controler/staffcontroler.cpp \
     model/databasecreator.cpp \
     model/staff.cpp \
     views/staffview.cpp \
@@ -40,9 +38,7 @@ HEADERS  += mainwindow.h \
     views/createclientdialog.h \
     views/createstaffdialog.h \
     views/about.h \
-    controler/clientcontroler.h \
     model/clientmodel.h \
-    controler/staffcontroler.h \
     model/databasecreator.h \
     model/staff.h \
     views/staffview.h \
