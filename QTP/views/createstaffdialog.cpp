@@ -18,13 +18,16 @@ CreateStaffDialog::CreateStaffDialog(int staffId, QWidget *parent)
     int currentIndex = 0;
     if(staffId != -1)
     {
-        setWindowTitle(QString("Modification"));
         staff = StaffModel::getStaffById(staffId);
         ui->firstNameLineEdit->setText(staff.getFirstName());
         ui->lastNameLineEdit->setText(staff.getLastName());
-        if(staff.getTypeId() == 7)
+
+		if(staff.getTypeId() == 7)
             account = AccountModel::getAccountById(staff.getId());
+
+		setWindowTitle(QString("Modification de la ressource ") + staff.getFirstName() + " " + staff.getLastName());
     }
+
     QList<StaffType> types = StaffModel::getStaffTypes();
 
     for(int i = 0; i < types.size(); i++)

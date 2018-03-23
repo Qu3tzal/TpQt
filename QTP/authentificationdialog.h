@@ -23,7 +23,7 @@ class AuthentificationDialog : public QDialog
 		 * @brief Constructor
 		 * @param parent the parent of the dialog
 		 */
-		explicit AuthentificationDialog(QWidget *parent = nullptr);
+		explicit AuthentificationDialog(QWidget *parent = Q_NULLPTR);
 
 		/**
 		 * @brief Destructor

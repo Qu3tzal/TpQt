@@ -61,7 +61,6 @@ int StaffView::getSelectedStaffId()
 {
 	// Get the currently selected staff.
 	QModelIndex selectedIndex = this->currentIndex();
-	qDebug() << selectedIndex.column() << selectedIndex.row();
 
 	// If invalid, return -1.
 	if(!selectedIndex.isValid())

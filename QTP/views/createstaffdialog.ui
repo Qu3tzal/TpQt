@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Create a new staff member</string>
+   <string>Création de la ressource</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources.qrc">

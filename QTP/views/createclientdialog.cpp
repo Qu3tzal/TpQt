@@ -31,7 +31,7 @@ CreateClientDialog::CreateClientDialog(int clientId, QWidget *parent)
         ui->dateEdit->setDate(client.getAppointmentDate());
         ui->lengthAppointmentSpinBox->setValue(client.getAppointmentDuration());
         ui->prioritySpinBox->setValue(client.getPriority());
-        setWindowTitle("Modification");
+		setWindowTitle("Modification du client " + client.getFirstName() + " " + client.getLastName());
     }
 	// Connections.
 	connect(this, SIGNAL(accepted()), this, SLOT(onDialogAccepted()));

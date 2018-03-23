@@ -26,7 +26,7 @@ Staff StaffModel::getStaffById(int id)
 	{
 		if(query.first())
 		{
-			staff = Staff(query.value(0).toInt(), query.value(1).toString(), query.value(2).toString(), query.value(3).toInt());
+			staff = Staff(query.value(0).toInt(), query.value(2).toString(), query.value(1).toString(), query.value(3).toInt());
 		}
 	}
 
@@ -51,7 +51,7 @@ QList<Staff> StaffModel::getStaffList()
 	{
 		while(query.next())
 		{
-			staffs.append(Staff(query.value(0).toInt(), query.value(1).toString(), query.value(2).toString(), query.value(3).toInt()));
+			staffs.append(Staff(query.value(0).toInt(), query.value(2).toString(), query.value(1).toString(), query.value(3).toInt()));
 		}
 	}
 
@@ -79,7 +79,7 @@ QList<Staff> StaffModel::getStaffListByType(int typeId)
 	{
 		while(query.next())
 		{
-			staffs.append(Staff(query.value(0).toInt(), query.value(1).toString(), query.value(2).toString(), query.value(3).toInt()));
+			staffs.append(Staff(query.value(0).toInt(), query.value(2).toString(), query.value(1).toString(), query.value(3).toInt()));
 		}
 	}
 

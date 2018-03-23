@@ -5,7 +5,7 @@
 class AppointmentScheduler
 {
 public:
-    AppointmentScheduler();
+	AppointmentScheduler();
 };
 
 #endif // APPOINTMENTSCHEDULER_H

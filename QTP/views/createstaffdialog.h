@@ -2,7 +2,6 @@
 #define CREATESTAFFDIALOG_H
 
 #include <QDialog>
-#include "controler/staffcontroler.h"
 #include "model/staff.h"
 #include "model/account.h"
 

@@ -54,8 +54,7 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     authentificationdialog.ui \
     views/createclientdialog.ui \
-    views/createstaffdialog.ui \
-    views/about.ui
+    views/createstaffdialog.ui
 
 DISTFILES +=
 

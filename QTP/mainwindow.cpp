@@ -77,7 +77,7 @@ void MainWindow::onCreateStaffAction()
 
 void MainWindow::onAboutUsAction()
 {
-	QMessageBox box(QString("À propos"), QString("Créateurs : Louis & Maxime"), QMessageBox::Icon::NoIcon, QMessageBox::Ok | QMessageBox::Default, QMessageBox::NoButton, QMessageBox::NoButton, this);
+	QMessageBox box(QString("À propos"), QString("Créateurs : Louis & Maxime"), QMessageBox::NoIcon, QMessageBox::Ok | QMessageBox::Default, QMessageBox::NoButton, QMessageBox::NoButton, this);
 	box.setIconPixmap(QPixmap(":/icons/polytechtours-166x166.png"));
 	box.exec();
 }
@@ -135,7 +135,7 @@ void MainWindow::onModifyClientButtonClicked()
 	QModelIndex selectedClient = ui->clientSearchTableView->currentIndex();
 
     int clientId = ui->clientSearchTableView->model()->index(selectedClient.row(), 0).data().toString().toInt();
-qDebug() << clientId;
+
     CreateClientDialog *csd = new CreateClientDialog(clientId, this);
     csd->exec();
 

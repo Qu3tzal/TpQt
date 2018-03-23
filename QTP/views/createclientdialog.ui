@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Create a new client</string>
+   <string>Création d'un client</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources.qrc">
