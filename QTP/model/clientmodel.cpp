@@ -180,7 +180,7 @@ int ClientModel::createClient(Client client)
 
     if(!query.exec())
     {
-        qDebug() << "Error while creating Client : " << query.lastError();
+		qDebug() << "Error while creating client : " << query.lastError();
     }
 
     return query.lastInsertId().toInt();
@@ -222,6 +222,6 @@ void ClientModel::updateClient(Client client)
 
     if(!query.exec())
     {
-        qDebug() << "Error while creating Client : " << query.lastError();
+		qDebug() << "Error while updating client : " << query.lastError();
     }
 }

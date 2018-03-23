@@ -17,10 +17,13 @@ CreateClientDialog::CreateClientDialog(int clientId, QWidget *parent)
 {
 	// Load the UI.
 	ui->setupUi(this);
+
     if(clientId != 0)
     {
-        // Auto fill the form
+		// Get the client data.
         client = ClientModel::getClientById(clientId);
+
+		// Auto fill the form
         ui->nameLineEdit->setText(client.getLastName());
         ui->firstnameLineEdit->setText(client.getFirstName());
         ui->addressLineEdit->setText(client.getAdress());
@@ -31,8 +34,11 @@ CreateClientDialog::CreateClientDialog(int clientId, QWidget *parent)
         ui->dateEdit->setDate(client.getAppointmentDate());
         ui->lengthAppointmentSpinBox->setValue(client.getAppointmentDuration());
         ui->prioritySpinBox->setValue(client.getPriority());
+
+		// Change window title.
 		setWindowTitle("Modification du client " + client.getFirstName() + " " + client.getLastName());
     }
+
 	// Connections.
 	connect(this, SIGNAL(accepted()), this, SLOT(onDialogAccepted()));
 	connect(this, SIGNAL(rejected()), this, SLOT(onDialogRejected()));
@@ -44,11 +50,14 @@ CreateClientDialog::CreateClientDialog(int clientId, QWidget *parent)
 	availableStaffModel = new QStandardItemModel(ui->availableStaffListView);
 	selectedStaffModel = new QStandardItemModel(ui->selectedStaffListView);
 
+	// If this is a modification.
     if(clientId != 0)
     {
+		// Load the staff assigned to the client and all the staff list.
         QList<int> staffs = AppointmentModel::getStaffByClientId(clientId);
         QList<Staff> allStaffs = StaffModel::getStaffList();
 
+		// Populate the selected staff list.
         for(int i(0); i < staffs.size(); i++)
         {
             Staff staff = StaffModel::getStaffById(staffs[i]);
@@ -60,8 +69,11 @@ CreateClientDialog::CreateClientDialog(int clientId, QWidget *parent)
 
             selectedStaffModel->invisibleRootItem()->appendRow(staffItems);
         }
+
+		// Populate the available staff list.
         for(int i(0); i < allStaffs.size(); i++)
         {
+			// We check the staff is not already selected.
             if(!staffs.contains(allStaffs[i].getId()))
             {
                 QStandardItem* staffNameItem = new QStandardItem(allStaffs[i].getFirstName() + " " + allStaffs[i].getLastName());
@@ -77,6 +89,7 @@ CreateClientDialog::CreateClientDialog(int clientId, QWidget *parent)
     }
     else
     {
+		// Populate the available staff list.
         for(int i(0) ; i < staffs.size() ; ++i)
         {
             QStandardItem* staffNameItem = new QStandardItem(staffs[i].getFirstName() + " " + staffs[i].getLastName());
@@ -89,13 +102,17 @@ CreateClientDialog::CreateClientDialog(int clientId, QWidget *parent)
         }
     }
 
+	// Sort the available staff.
 	availableStaffModel->sort(0);
+
+	// Set the models for the staffs lists.
 	ui->availableStaffListView->setModel(availableStaffModel);
 	ui->selectedStaffListView->setModel(selectedStaffModel);
 
-    QRegExp ipRegex ("[0-9]*");
-    QRegExpValidator *ipValidator = new QRegExpValidator(ipRegex, this);
-    ui->phoneNumberLineEdit->setValidator(ipValidator);
+	// Regex for the phone number.
+	QRegExp phoneRegex("[0-9]*");
+	QRegExpValidator *phoneValidator = new QRegExpValidator(phoneRegex, this);
+	ui->phoneNumberLineEdit->setValidator(phoneValidator);
 }
 
 CreateClientDialog::~CreateClientDialog()

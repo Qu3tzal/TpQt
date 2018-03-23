@@ -15,16 +15,21 @@ CreateStaffDialog::CreateStaffDialog(int staffId, QWidget *parent)
 	// Load the UI.
 	ui->setupUi(this);
 
+	// Check if we are in modification or add.
     int currentIndex = 0;
     if(staffId != -1)
     {
+		// Load the staff data.
         staff = StaffModel::getStaffById(staffId);
+
+		// Fill the forms with the data.
         ui->firstNameLineEdit->setText(staff.getFirstName());
         ui->lastNameLineEdit->setText(staff.getLastName());
 
 		if(staff.getTypeId() == 7)
             account = AccountModel::getAccountById(staff.getId());
 
+		// Change window title.
 		setWindowTitle(QString("Modification de la ressource ") + staff.getFirstName() + " " + staff.getLastName());
     }
 
@@ -102,6 +107,7 @@ void CreateStaffDialog::onDialogRejected()
 
 void CreateStaffDialog::onComboBoxChanged()
 {
+	// If the selected role is one with an account, display the login & password.
     if(ui->typeComboBox->currentText() == "Informaticien")
     {
         if(staff.getTypeId() == 7)
@@ -109,6 +115,7 @@ void CreateStaffDialog::onComboBoxChanged()
             ui->passwordLineEdit->setText(account.getPassword());
             ui->loginLineEdit->setText(account.getLogin());
         }
+
         ui->loginLabel->setVisible(true);
         ui->loginLineEdit->setVisible(true);
         ui->passwordLabel->setVisible(true);

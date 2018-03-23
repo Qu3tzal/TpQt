@@ -7,8 +7,15 @@
 class StaffView : public QTreeView
 {
 	public:
+		/**
+		 * @brief StaffView constructor
+		 * @param parent
+		 */
 		StaffView(QWidget * parent = Q_NULLPTR);
 
+		/**
+		 * @brief refreshData reload the data displayed
+		 */
 		void refreshData();
 
 		/**

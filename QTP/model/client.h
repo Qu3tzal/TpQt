@@ -7,10 +7,28 @@
 class Client
 {
 public:
-		Client(int _id, QString _lastName, QString _firstName, QString _adress, QString _city, int _postalCode, QString _commentary, int _phoneNumber, QDate _appointmentDate, int _appointmentDuration, int _priority);
+	/**
+	 * @brief Client constructor
+	 * @param _id
+	 * @param _lastName
+	 * @param _firstName
+	 * @param _adress
+	 * @param _city
+	 * @param _postalCode
+	 * @param _commentary
+	 * @param _phoneNumber
+	 * @param _appointmentDate
+	 * @param _appointmentDuration
+	 * @param _priority
+	 */
+	Client(int _id, QString _lastName, QString _firstName, QString _adress, QString _city, int _postalCode, QString _commentary, int _phoneNumber, QDate _appointmentDate, int _appointmentDuration, int _priority);
 
-        Client();
-    /**
+	/**
+	 * @brief Client default constructor
+	 */
+	Client();
+
+	/**
      * @brief getId
      * @return The client id
      */
@@ -77,7 +95,6 @@ public:
     QDate getAppointmentDate() const;
 
 private:
-
     int id;
     QString firstName;
     QString lastName;
@@ -89,7 +106,6 @@ private:
     int priority;
     QString commentary;
     int phoneNumber;
-
 
 };
 

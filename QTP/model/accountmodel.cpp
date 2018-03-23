@@ -52,7 +52,7 @@ Account AccountModel::getAccountById(int staffId)
 
     if(!query.exec())
     {
-        qDebug() << "Error while getting Account : " << query.lastError().text();
+		qDebug() << "Error while getting account : " << query.lastError().text();
     }
     else
     {

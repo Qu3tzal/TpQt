@@ -5,8 +5,8 @@
 
 class ClientView : public QTableView
 {
-public:
-    ClientView(QWidget * parent = Q_NULLPTR);
+	public:
+		ClientView(QWidget * parent = Q_NULLPTR);
 };
 
 #endif // CLIENTVIEW_H
