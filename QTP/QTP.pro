@@ -18,7 +18,6 @@ SOURCES += main.cpp\
     model/authentificationmodel.cpp \
     views/createclientdialog.cpp \
     views/createstaffdialog.cpp \
-    views/about.cpp \
     model/clientmodel.cpp \
     model/databasecreator.cpp \
     model/staff.cpp \
@@ -37,7 +36,6 @@ HEADERS  += mainwindow.h \
     model/authentificationmodel.h \
     views/createclientdialog.h \
     views/createstaffdialog.h \
-    views/about.h \
     model/clientmodel.h \
     model/databasecreator.h \
     model/staff.h \
